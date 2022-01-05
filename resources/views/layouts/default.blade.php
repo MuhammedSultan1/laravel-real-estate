@@ -4,8 +4,16 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+  @include('mapbox.links')
+   <style>
+         #map{
+             height: 100vh;
+             width: 100vw;
+         }
+     </style>
+    <script type="text/javascript" src="{{ URL::asset('/js/mapbox.js') }}" defer></script>
 </head>
-<body>
+<body class="m-0">
     {{-- NAVBAR BEGINS --}}
 <nav class="border-b border-gray-400">
             <div class="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between px-4 py-6">

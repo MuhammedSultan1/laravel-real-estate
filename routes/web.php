@@ -26,3 +26,7 @@ Route::get('/forSale/{property}', 'App\Http\Controllers\ListingsController@show'
 Route::get('/forRent', 'App\Http\Controllers\ListingsController@forRent')->name('forRent');
 
 Route::get('/forRent/{property}', 'App\Http\Controllers\ListingsController@show')->name('forRent.show');
+
+Route::get('/map', function () {
+    return view('mapbox/map');
+});
