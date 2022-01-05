@@ -17,7 +17,7 @@
           Let us help you find the perfect home.
         </h2>
         <p class="text-base text-gray-700 md:text-lg">
-            Enter a state and city in the search box below and click search.
+            Enter a zipcode in the field below and click search.
         </p>
         <p class="text-base text-gray-700 md:text-lg">
             We will take care of the rest.
@@ -25,7 +25,7 @@
       </div>
        <form class="flex flex-col items-center w-full mb-4 md:flex-row md:px-16">
         <input
-          placeholder="Enter a state and city"
+          placeholder="Enter a zipcode"
           required=""
           type="text"
           class="flex-grow w-full h-12 px-4 mb-3 transition duration-200 bg-white border border-gray-300 rounded shadow-sm appearance-none md:mr-2 md:mb-0 focus:border-purple-700 focus:outline-none focus:shadow-outline"

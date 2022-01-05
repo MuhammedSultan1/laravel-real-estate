@@ -40,7 +40,7 @@
                         <a href="/" aria-label="Sign up" title="Sign up" class="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-700 hover:bg-purple-800 focus:shadow-outline focus:outline-none">Sign up</a>
                     </li>
                 </ul>
-                <livewire:search-dropdown>
+                 <livewire:search-dropdown>
             </div>
         </nav>
 {{-- NAVBAR ENDS --}}

@@ -1,5 +1,6 @@
 <?php
 
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::get('/forSale', 'App\Http\Controllers\ListingsController@forSale')->name('forSale');
+
+Route::get('/forSale/{property}', 'App\Http\Controllers\ListingsController@show')->name('forSale.show');
+
+Route::get('/forRent', 'App\Http\Controllers\ListingsController@forRent')->name('forRent');
+
+Route::get('/forRent/{property}', 'App\Http\Controllers\ListingsController@show')->name('forRent.show');
