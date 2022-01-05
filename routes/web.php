@@ -19,7 +19,7 @@ Route::get('/', function () {
 });
 
 
-Route::get('/forSale', 'App\Http\Controllers\ListingsController@forSale')->name('forSale');
+Route::get('/forSale', 'App\Http\Controllers\ListingsController@forSale')->name('for_sale');
 
 Route::get('/forSale/{property}', 'App\Http\Controllers\ListingsController@show')->name('forSale.show');
 
