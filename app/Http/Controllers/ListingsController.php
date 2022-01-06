@@ -25,10 +25,27 @@ class ListingsController extends Controller
             'sort' => 'relevance'
         ])->json()['listings'];
 
-        //dump($forSale);
+        //get all the addresses from the forSale API call
+       
+       $collection = collect($forSale);
 
+       $plucked = $collection->pluck('address');
+
+       $plucked->all();
+
+    
+        //$address = $forSale['address'];
+
+        //$requestURL = Http::get('https://api.mapbox.com/geocoding/v5/mapbox.places/'.$address.'.json?access_token='.env('MAPBOX_KEY'));
+
+        dump($plucked);
+
+        
         return view('forSale',[
              'forSale' => $forSale,
+             'plucked' => $plucked,
+            //  'address' => $address,
+            //  'requestURL' => $requestURL,
          ]);
     }
 

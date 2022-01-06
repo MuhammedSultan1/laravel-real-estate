@@ -43,7 +43,7 @@
 		</div> --}}
 
 <section class="text-gray-600 body-font">
-           <div class="container py-24 mx-auto flex flex-col lg:w-4/6 mx-auto bg-white relative flex flex-wrap py-6 rounded shadow-md rounded-lg h-full overflow-hidden">
+           <div class="container mx-auto flex flex-col lg:w-4/6 relative flex flex-wrap rounded shadow-md rounded-lg w-full h-full overflow-hidden">
             <div id='map'></div>
           </div>
 </section>
