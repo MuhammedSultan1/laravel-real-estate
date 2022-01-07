@@ -69,6 +69,27 @@
     </div>
 	</div>
 </section>
+<script>    
+    let coordinates = {!! json_encode($coordinates ?? '',  JSON_HEX_TAG) !!};
+    mapboxgl.accessToken =
+    "pk.eyJ1IjoibXJzd2VldHMiLCJhIjoiY2t4Y3VqcjNqMWQyeTJ3cGZhMHN6N3F2dyJ9.qf4Ckg7Y8JtW9HzpGRiVOA";
+const map = new mapboxgl.Map({
+    container: "map", // container ID
+    style: "mapbox://styles/mapbox/streets-v11", // style URL
+    center: [-81.6557, 30.3322], // starting position [lng, lat]
+    zoom: 12, // starting zoom
+});
+// Set options
+const addMarker = () =>{
+  let marker = new mapboxgl.Marker();
+  marker.setLngLat([coordinates])
+  marker.addTo(map)
+}
+map.on("load", addMarker);
+    // .setLngLat([addresses])
+    // .addTo(map);
 
+</script>
               
 @endsection
+

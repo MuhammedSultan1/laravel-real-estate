@@ -11,7 +11,7 @@
              width: 100vw;
          }
      </style>
-    <script type="text/javascript" src="{{ URL::asset('/js/mapbox.js') }}" defer></script>
+    {{-- <script type="text/javascript" src="{{ URL::asset('/js/mapbox.js') }}" defer></script> --}}
 </head>
 <body class="m-0">
     {{-- NAVBAR BEGINS --}}

@@ -26,26 +26,37 @@ class ListingsController extends Controller
         ])->json()['listings'];
 
         //get all the addresses from the forSale API call
-       
-       $collection = collect($forSale);
 
-       $plucked = $collection->pluck('address');
+         $collection = collect($forSale);
 
-       $plucked->all();
+         $plucked = $collection->pluck('address');
 
-    
-        //$address = $forSale['address'];
+         $plucked->all();
+
 
         //$requestURL = Http::get('https://api.mapbox.com/geocoding/v5/mapbox.places/'.$address.'.json?access_token='.env('MAPBOX_KEY'));
 
-        dump($plucked);
+        //turn addresses into coordinates
+        //for every address, turn it into coordinates
+        //take an address from the array and turn it into coordinates
+
+        //   $getCoordinates = Http::withHeaders([
+        //   'x-rapidapi-host' => 'eec19846-geocoder-us-census-bureau-v1.p.rapidapi.com',
+        //   'x-rapidapi-key' => env('RAPID_API_KEY'),
+        //   ])->get('https://eec19846-geocoder-us-census-bureau-v1.p.rapidapi.com/locations/onelineaddress', [
+        //       'benchmark' => 'Public_AR_Current',
+        //       'address' => $plucked,
+        //       'format' => 'json'
+        //   ])->json()['result']['addressMatches']['0']['coordinates'];
+
+        //dump($coordinates);
 
         
         return view('forSale',[
-             'forSale' => $forSale,
-             'plucked' => $plucked,
-            //  'address' => $address,
-            //  'requestURL' => $requestURL,
+            'forSale' => $forSale,
+            'plucked' => $plucked,
+            //'getCoordinates' => $getCoordinates,
+            //'requestURL' => $requestURL,
          ]);
     }
 
