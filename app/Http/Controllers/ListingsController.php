@@ -27,11 +27,29 @@ class ListingsController extends Controller
 
         //get all the addresses from the forSale API call
 
-         $collection = collect($forSale);
+          $LonCollection = collect($forSale);
 
-         $plucked = $collection->pluck('address');
+          $pluckedLon = $LonCollection->pluck('lon');
 
-         $plucked->all();
+          $pluckedLon->all();
+
+          $LatCollection = collect($forSale);
+
+          $pluckedLat = $LatCollection->pluck('lat');
+
+          $pluckedLat->all();
+
+          $collection = collect(['lon', 'lat']);
+
+          $combined = $collection->combine([$pluckedLon, $pluckedLat]);
+
+          $combined->all();
+          
+
+        // foreach ($variable as $key) {
+            
+        // }
+        
 
 
         //$requestURL = Http::get('https://api.mapbox.com/geocoding/v5/mapbox.places/'.$address.'.json?access_token='.env('MAPBOX_KEY'));
@@ -49,12 +67,14 @@ class ListingsController extends Controller
         //       'format' => 'json'
         //   ])->json()['result']['addressMatches']['0']['coordinates'];
 
-        //dump($coordinates);
+        dump($combined);
 
         
         return view('forSale',[
             'forSale' => $forSale,
-            'plucked' => $plucked,
+            'pluckedLon' => $pluckedLon,
+            'pluckedLat' => $pluckedLat,
+            'combined' => $combined,
             //'getCoordinates' => $getCoordinates,
             //'requestURL' => $requestURL,
          ]);
