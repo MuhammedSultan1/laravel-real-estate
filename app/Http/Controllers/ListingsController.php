@@ -21,7 +21,7 @@ class ListingsController extends Controller
         ])->get('https://realty-in-us.p.rapidapi.com/properties/list-for-sale', [
             'postal_code' => '32244',
             'offset' => '0',
-            'limit' => '40',
+            'limit' => '50',
             'sort' => 'relevance'
         ])->json()['listings'];
 

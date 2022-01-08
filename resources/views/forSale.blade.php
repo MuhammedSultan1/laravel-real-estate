@@ -47,7 +47,10 @@
   );
 
   // This add a marker with the default icon
-  new maplibregl.Marker().setLngLat([coordinates.lon[1], coordinates.lat[1]]).addTo(map);
+   for(var i = 0; i < coordinates.lon.length; i++){
+      new maplibregl.Marker().setLngLat([coordinates.lon[i], coordinates.lat[i]]).addTo(map);
+  }
+  //new maplibregl.Marker().setLngLat([coordinates.lon[1], coordinates.lat[1]]).addTo(map);
 
         </script> 
 
