@@ -31,8 +31,8 @@
 </section>
  <script type="text/javascript">
 
-  var coordinates ={!! json_encode($combined->toArray()) !!};
-  console.log(coordinates); 
+  var propertyInfo ={!! json_encode($combined->toArray()) !!};
+  console.log(propertyInfo); 
 
   const accessToken = "L4CAeBg0RDqXjqnZCEiNwJHsPbB8lyCt5EgxPDYHrJsymhFb9m7gQuW5H4dhJlCP";
   const map = new maplibregl.Map({
@@ -47,14 +47,24 @@
   );
 
   // This add a marker with the default icon
-   for(var i = 0; i < coordinates.lon.length; i++){
-      new maplibregl.Marker().setLngLat([coordinates.lon[i], coordinates.lat[i]]).addTo(map);
-  }
-  //new maplibregl.Marker().setLngLat([coordinates.lon[1], coordinates.lat[1]]).addTo(map);
+  //for every longitude key-value pair, display a marker
+   for(var i = 0; i < propertyInfo.lon.length; i++){
+      new maplibregl.Marker().setLngLat([propertyInfo.lon[i], propertyInfo.lat[i]]).addTo(map);
+      let msg = 'Price: '+ propertyInfo.price[i] + ' Beds: ' + propertyInfo.beds[i] + ' Baths: ' + propertyInfo.baths[i] + ' Sqft: ' + propertyInfo.sqft[i];
 
-        </script> 
+    // Popup definition before binding it to a marker
+    const markerPopup = new maplibregl.Popup({
+        closeOnClick: true
+      })
+      .setHTML(msg);
+    // Connect the popup to a new marker
+    new maplibregl.Marker()
+      .setLngLat([propertyInfo.lon[i], propertyInfo.lat[i]])
+      .setPopup(markerPopup)
+      .addTo(map);
+    }
 
-        {{-- <script src="{{ url('js/mapbox.js')}}"></script> --}}
+    </script> 
               
 @endsection
 

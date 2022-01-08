@@ -21,52 +21,59 @@ class ListingsController extends Controller
         ])->get('https://realty-in-us.p.rapidapi.com/properties/list-for-sale', [
             'postal_code' => '32244',
             'offset' => '0',
-            'limit' => '50',
+            'limit' => '52',
             'sort' => 'relevance'
         ])->json()['listings'];
 
-        //get all the addresses from the forSale API call
+        //below we get all the coordinates and property info that is needed from the forSale API call
+     
+        //collect number of sqft
+        $sqftCollection = collect($forSale);
 
+        $pluckedSqft = $sqftCollection->pluck('sqft');
+
+        $pluckedSqft->all();
+
+        //collect number of baths
+        $bathsCollection = collect($forSale);
+
+        $pluckedBaths = $bathsCollection->pluck('baths');
+
+        $pluckedBaths->all();
+
+        //collect number of beds
+        $bedCollection = collect($forSale);
+
+        $pluckedBeds = $bedCollection->pluck('beds');
+
+        $pluckedBeds->all();
+
+        //collect all prices
+        $priceCollection = collect($forSale);
+
+        $pluckedPrices = $priceCollection->pluck('price');
+
+        $pluckedPrices->all();
+
+        //collect all longitude
           $LonCollection = collect($forSale);
 
           $pluckedLon = $LonCollection->pluck('lon');
 
           $pluckedLon->all();
-
+        //collect all latitude
           $LatCollection = collect($forSale);
 
           $pluckedLat = $LatCollection->pluck('lat');
 
           $pluckedLat->all();
+        //combine latitude and longitude and all the other information
+          $collection = collect(['lon', 'lat', 'price', 'beds', 'baths', 'sqft']);
 
-          $collection = collect(['lon', 'lat']);
-
-          $combined = $collection->combine([$pluckedLon, $pluckedLat]);
+          $combined = $collection->combine([$pluckedLon, $pluckedLat, $pluckedPrices, $pluckedBeds, $pluckedBaths, $pluckedSqft]);
 
           $combined->all();
-          
-
-        // foreach ($variable as $key) {
-            
-        // }
-        
-
-
-        //$requestURL = Http::get('https://api.mapbox.com/geocoding/v5/mapbox.places/'.$address.'.json?access_token='.env('MAPBOX_KEY'));
-
-        //turn addresses into coordinates
-        //for every address, turn it into coordinates
-        //take an address from the array and turn it into coordinates
-
-        //   $getCoordinates = Http::withHeaders([
-        //   'x-rapidapi-host' => 'eec19846-geocoder-us-census-bureau-v1.p.rapidapi.com',
-        //   'x-rapidapi-key' => env('RAPID_API_KEY'),
-        //   ])->get('https://eec19846-geocoder-us-census-bureau-v1.p.rapidapi.com/locations/onelineaddress', [
-        //       'benchmark' => 'Public_AR_Current',
-        //       'address' => $plucked,
-        //       'format' => 'json'
-        //   ])->json()['result']['addressMatches']['0']['coordinates'];
-
+    
         dump($combined);
 
         
@@ -75,8 +82,6 @@ class ListingsController extends Controller
             'pluckedLon' => $pluckedLon,
             'pluckedLat' => $pluckedLat,
             'combined' => $combined,
-            //'getCoordinates' => $getCoordinates,
-            //'requestURL' => $requestURL,
          ]);
     }
 
