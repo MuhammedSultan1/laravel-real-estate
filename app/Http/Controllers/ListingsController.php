@@ -123,25 +123,16 @@ class ListingsController extends Controller
 
         dump($property);
 
-        //collect all longitude
-          $LonCollection = collect($property);
+        //get latitude and longitude
+        $lon = $property['address']['lon'];
+        $lat = $property['address']['lat'];
+          
+         //combine latitude and longitude
+        $collection = collect(['lon', 'lat']);
 
-          $pluckedLon = $LonCollection->pluck('lon');
+        $combined = $collection->combine([$lon, $lat]);
 
-          $pluckedLon->all();
-        //collect all latitude
-          $LatCollection = collect($property);
-
-          $pluckedLat = $LatCollection->pluck('lat');
-
-          $pluckedLat->all();
-
-           //combine latitude and longitude
-          $collection = collect(['lon', 'lat']);
-
-          $combined = $collection->combine([$pluckedLon, $pluckedLat]);
-
-          $combined->all();
+        $combined->all();
 
         return view('show',[
             'property' => $property,

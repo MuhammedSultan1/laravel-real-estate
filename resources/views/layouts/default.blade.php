@@ -23,6 +23,7 @@
       cursor: pointer;
     }
   </style>
+  @stack('custom-scripts')
 </head>
 <body class="m-0">
     {{-- NAVBAR BEGINS --}}

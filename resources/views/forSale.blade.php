@@ -54,6 +54,7 @@
       new maplibregl.Marker().setLngLat([propertyInfo.lon[i], propertyInfo.lat[i]]).addTo(map);
       let msg = 'Price: '+ propertyInfo.price[i] + ' Beds: ' + propertyInfo.beds[i] + ' Baths: ' + propertyInfo.baths[i] + ' Sqft: ' + propertyInfo.sqft[i];
 
+    // Adding a popup
     // Popup definition before binding it to a marker
     const markerPopup = new maplibregl.Popup({
         closeOnClick: true
