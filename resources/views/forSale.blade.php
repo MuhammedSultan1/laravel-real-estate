@@ -11,7 +11,8 @@
 	<div class="container flex flex-col-reverse mx-auto lg:flex-row">
     <div class="container mx-auto grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 pt-6 gap-8">
       @foreach ($forSale as $saleProperty)
-        <div class="max-w-sm mx-auto overflow-hidden bg-white rounded shadow-lg">
+      <div class="max-w-sm mx-auto overflow-hidden bg-white rounded shadow-lg">
+          <a href="{{ route('forSale.show', $saleProperty['property_id']) }}">
             <img class="object-cover object-center w-full h-56 rounded" src="{{ $saleProperty['photo'] ?? asset('public/images/img-not-available.jpeg') }}" alt="Property">
             <div class="px-6 py-4">
                 <h1 class="text-xl font-semibold text-gray-800">{{ $saleProperty['price'] ?? ''}}</h1>
@@ -24,6 +25,7 @@
                     <h1 class="px-2 text-sm">{{ $saleProperty['address'] ?? ''}}</h1>
                 </div>
             </div>
+          </a>
         </div>
           @endforeach
     </div>

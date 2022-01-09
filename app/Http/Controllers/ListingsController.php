@@ -114,7 +114,39 @@ class ListingsController extends Controller
      */
     public function show($id)
     {
-        //
+        $property = Http::withHeaders([
+        'x-rapidapi-host' => 'realty-in-us.p.rapidapi.com',
+        'x-rapidapi-key' => env('RAPID_API_KEY'),
+        ])->get('https://realty-in-us.p.rapidapi.com/properties/v2/detail', [
+            'property_id' => $id
+        ])->json()['properties']['0'];
+
+        dump($property);
+
+        //collect all longitude
+          $LonCollection = collect($property);
+
+          $pluckedLon = $LonCollection->pluck('lon');
+
+          $pluckedLon->all();
+        //collect all latitude
+          $LatCollection = collect($property);
+
+          $pluckedLat = $LatCollection->pluck('lat');
+
+          $pluckedLat->all();
+
+           //combine latitude and longitude
+          $collection = collect(['lon', 'lat']);
+
+          $combined = $collection->combine([$pluckedLon, $pluckedLat]);
+
+          $combined->all();
+
+        return view('show',[
+            'property' => $property,
+            'combined' => $combined,
+        ]);
     }
 
     /**
