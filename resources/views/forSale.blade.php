@@ -31,6 +31,7 @@
     </div>
 	</div>
 </section>
+
  <script type="text/javascript">
 
   var propertyInfo ={!! json_encode($combined->toArray()) !!};

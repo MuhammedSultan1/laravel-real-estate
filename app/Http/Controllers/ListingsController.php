@@ -73,9 +73,6 @@ class ListingsController extends Controller
           $combined = $collection->combine([$pluckedLon, $pluckedLat, $pluckedPrices, $pluckedBeds, $pluckedBaths, $pluckedSqft]);
 
           $combined->all();
-    
-        dump($combined);
-
         
         return view('forSale',[
             'forSale' => $forSale,
@@ -121,8 +118,6 @@ class ListingsController extends Controller
             'property_id' => $id
         ])->json()['properties']['0'];
 
-        dump($property);
-
         //get latitude and longitude
         $lon = $property['address']['lon'];
         $lat = $property['address']['lat'];
@@ -133,12 +128,39 @@ class ListingsController extends Controller
         $combined = $collection->combine([$lon, $lat]);
 
         $combined->all();
+        
+        // make the api call for similar properties
+        
+        $similarProperties = Http::withHeaders([
+        'x-rapidapi-host' => 'realty-in-us.p.rapidapi.com',
+        'x-rapidapi-key' => env('RAPID_API_KEY'),
+        ])->get('https://realty-in-us.p.rapidapi.com/properties/list-similarities', [
+            'property_id' => $id,
+            'limit' => '20',
+	        'prop_status' => 'for_sale'
+        ])->json()['results']['similar_homes']['properties'];
 
         return view('show',[
             'property' => $property,
             'combined' => $combined,
+            'similarProperties' => $similarProperties,
         ]);
     }
+
+    //  /**
+    //  * Display the specified resource.
+    //  *
+    //  * @param  int  $id
+    //  * @return \Illuminate\Http\Response
+    //  */
+    // public function similarProperties($id)
+    // {
+
+
+    //     return view('show',[
+
+    //     ]);
+    // }
 
     /**
      * Show the form for editing the specified resource.
