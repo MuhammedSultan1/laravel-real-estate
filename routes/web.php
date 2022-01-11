@@ -16,16 +16,27 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+
 });
 
+//Route::post('/forSale/{postal}', 'App\Http\Controllers\ListingsController@forSale')->name('sale');
+Route::post('/forSale', 'App\Http\Controllers\ListingsController@forSale')->name('forSale');
 
-Route::get('/forSale', 'App\Http\Controllers\ListingsController@forSale')->name('for_sale');
+//Route::post('/forSale/{postal}', 'App\Http\Controllers\ListingsController@forSale')->name('forSale');
+
+// Route::get('/forSale/{postal}', function () {
+//     return view('forSale', ['postal' => $postal]);
+// });
+    //return view('forSale/{postal}', ['postal' => $postal]);
+
+//Route::post('/forSale/{postal}', 'App\Http\Controllers\ListingsController@forSale')->name('forSale/{postal}');
+
 
 Route::get('/forSale/{property}', 'App\Http\Controllers\ListingsController@show')->name('forSale.show');
 
-Route::get('/forRent', 'App\Http\Controllers\ListingsController@forRent')->name('forRent');
+Route::get('/forRent', 'App\Http\Controllers\RentalController@forRent')->name('forRent');
 
-Route::get('/forRent/{property}', 'App\Http\Controllers\ListingsController@show')->name('forRent.show');
+Route::get('/forRent/{property}', 'App\Http\Controllers\RentalController@show')->name('forRent.show');
 
 Route::get('/map', function () {
     return view('mapbox/map');

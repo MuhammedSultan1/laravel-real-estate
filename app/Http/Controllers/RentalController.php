@@ -6,69 +6,63 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
 
-class ListingsController extends Controller
+class RentalController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function forSale(Request $request)
+    public function forRent()
     {
-        // $form_data = array();
-        // $form_data['arrivalAirline'] = $input['arrivalAirline'];
-
-        $postal = $request->postal;
-        dump($postal);
-
-        $forSale = Http::withHeaders([
+        $forRent = Http::withHeaders([
         'x-rapidapi-host' => 'realty-in-us.p.rapidapi.com',
         'x-rapidapi-key' => env('RAPID_API_KEY'),
-        ])->get('https://realty-in-us.p.rapidapi.com/properties/list-for-sale', [
-            'postal_code' => $postal,
+        ])->get('https://realty-in-us.p.rapidapi.com/properties/list-for-rent', [
+            'postal_code' => '32244',
             'offset' => '0',
             'limit' => '52',
             'sort' => 'relevance'
         ])->json()['listings'];
 
-        //below we get all the coordinates and property info that is needed from the forSale API call
+        //below we get all the coordinates and property info that is needed from the forRent API call
      
         //collect number of sqft
-        $sqftCollection = collect($forSale);
+        $sqftCollection = collect($forRent);
 
         $pluckedSqft = $sqftCollection->pluck('sqft');
 
         $pluckedSqft->all();
 
         //collect number of baths
-        $bathsCollection = collect($forSale);
+        $bathsCollection = collect($forRent);
 
         $pluckedBaths = $bathsCollection->pluck('baths');
 
         $pluckedBaths->all();
 
         //collect number of beds
-        $bedCollection = collect($forSale);
+        $bedCollection = collect($forRent);
 
         $pluckedBeds = $bedCollection->pluck('beds');
 
         $pluckedBeds->all();
 
         //collect all prices
-        $priceCollection = collect($forSale);
+        $priceCollection = collect($forRent);
 
         $pluckedPrices = $priceCollection->pluck('price');
 
         $pluckedPrices->all();
 
         //collect all longitude
-          $LonCollection = collect($forSale);
+          $LonCollection = collect($forRent);
 
           $pluckedLon = $LonCollection->pluck('lon');
 
           $pluckedLon->all();
         //collect all latitude
-          $LatCollection = collect($forSale);
+          $LatCollection = collect($forRent);
 
           $pluckedLat = $LatCollection->pluck('lat');
 
@@ -79,10 +73,11 @@ class ListingsController extends Controller
           $combined = $collection->combine([$pluckedLon, $pluckedLat, $pluckedPrices, $pluckedBeds, $pluckedBaths, $pluckedSqft]);
 
           $combined->all();
+
+          dump($combined);
         
-        return view('forSale.forSale',[
-            'postal' => $postal,
-            'forSale' => $forSale,
+        return view('forRent.forRent',[
+            'forRent' => $forRent,
             'pluckedLon' => $pluckedLon,
             'pluckedLat' => $pluckedLat,
             'combined' => $combined,
@@ -143,31 +138,17 @@ class ListingsController extends Controller
         'x-rapidapi-key' => env('RAPID_API_KEY'),
         ])->get('https://realty-in-us.p.rapidapi.com/properties/list-similarities', [
             'property_id' => $id,
-            'limit' => '20',
-	        'prop_status' => 'for_sale'
-        ])->json()['results']['similar_homes']['properties'];
+            'limit' => '20'
+        ])->json();
 
-        return view('forSale.show',[
+        dump($similarProperties);
+        
+        return view('forRent.show',[
             'property' => $property,
             'combined' => $combined,
             'similarProperties' => $similarProperties,
         ]);
     }
-
-    //  /**
-    //  * Display the specified resource.
-    //  *
-    //  * @param  int  $id
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function similarProperties($id)
-    // {
-
-
-    //     return view('show',[
-
-    //     ]);
-    // }
 
     /**
      * Show the form for editing the specified resource.
