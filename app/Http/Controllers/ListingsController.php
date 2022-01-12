@@ -19,7 +19,7 @@ class ListingsController extends Controller
         // $form_data['arrivalAirline'] = $input['arrivalAirline'];
 
         $postal = $request->postal;
-        dump($postal);
+        //dump($postal);
 
         $forSale = Http::withHeaders([
         'x-rapidapi-host' => 'realty-in-us.p.rapidapi.com',
@@ -80,6 +80,8 @@ class ListingsController extends Controller
 
           $combined->all();
         
+
+          dump($combined);
         return view('forSale.forSale',[
             'postal' => $postal,
             'forSale' => $forSale,

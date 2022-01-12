@@ -41,8 +41,8 @@
   const map = new maplibregl.Map({
       container: "map",
       style: `https://api.jawg.io/styles/jawg-terrain.json?access-token=${accessToken}`,
-      zoom: 11,
-      center: [-81.6557, 30.3322],
+      zoom: 7,
+      center: [propertyInfo.lon[1], propertyInfo.lat[1]],
   }).addControl(new maplibregl.NavigationControl(), "top-right");
   // This plugin is used for right to left languages
   maplibregl.setRTLTextPlugin(
