@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
-use App\Models\Property;
+
 
 
 class ListingsController extends Controller
@@ -16,10 +16,6 @@ class ListingsController extends Controller
      */
     public function forSale(Request $request)
     {
-        //Get everything form the Property Model
-        $adminProperties = Property::all();
-        //return $adminProperties;
-
         $postal = $request->postal;
 
         $forSale = Http::withHeaders([

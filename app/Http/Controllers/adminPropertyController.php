@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
+use App\Models\Property;
 
 class adminPropertyController extends Controller
 {
@@ -13,7 +15,14 @@ class adminPropertyController extends Controller
      */
     public function index()
     {
-        //
+        //Get everything form the Property Model
+        $adminProperties = Property::all();
+        dump($adminProperties);
+
+
+         return view('adminProperties.adminProperty',[
+             'adminProperties' => $adminProperties,
+         ]);
     }
 
     /**
@@ -46,6 +55,26 @@ class adminPropertyController extends Controller
     public function show($id)
     {
         //
+        // $adminProperties = Property::all();
+
+        // $address = $adminProperties['address'];
+
+        //  //get latitude and longitude
+        // $lon = $adminProperties['lon'];
+        // $lat = $adminProperties['lat'];
+          
+        //  //combine latitude and longitude
+        // $collection = collect(['lon', 'lat']);
+
+        // $combined = $collection->combine([$lon, $lat]);
+
+        // $combined->all();
+        
+
+        // return view('adminProperties.show',[
+        //     'adminProperty' => $adminProperty,
+        //     'combined' => $combined,
+        // ]);
     }
 
     /**
@@ -82,3 +111,25 @@ class adminPropertyController extends Controller
         //
     }
 }
+
+
+
+ /* <script>
+    var coordinates ={!! json_encode($combined ?? ''->toArray()) !!};
+    console.log(coordinates);
+  
+const accessToken = "L4CAeBg0RDqXjqnZCEiNwJHsPbB8lyCt5EgxPDYHrJsymhFb9m7gQuW5H4dhJlCP";
+const map = new maplibregl.Map({
+      container: "propertyMap",
+      style: `https://api.jawg.io/styles/jawg-terrain.json?access-token=${accessToken}`,
+      zoom: 11,
+      center: [coordinates.lon, coordinates.lat],
+  }).addControl(new maplibregl.NavigationControl(), "top-right");
+  // This plugin is used for right to left languages
+  maplibregl.setRTLTextPlugin(
+      "https://unpkg.com/@mapbox/mapbox-gl-rtl-text@0.2.3/mapbox-gl-rtl-text.min.js"
+  );
+
+    new maplibregl.Marker().setLngLat([coordinates.lon, coordinates.lat]).addTo(map);
+
+  </script> */

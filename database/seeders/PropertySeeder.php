@@ -32,7 +32,7 @@ class PropertySeeder extends Seeder
 
                 'details' => 'This beautiful house in Jacksonville has 4 beds and 3 bathrooms. It has a big yard.',
 
-                'gallery' => 'https://media.gettyimages.com/photos/twilight-exterior-of-home-and-landscape-picture-id168325352?s=2048x2048',
+                'gallery' => 'https://photos.zillowstatic.com/fp/85b1ad957a4ce459578f553e896101c6-cc_ft_1536.webp',
 
                 'lat' => '30.209939',
 
@@ -48,17 +48,17 @@ class PropertySeeder extends Seeder
 
                 'address' => '2563 Sofkee Cir, Lizella, GA 31052',
 
-                'beds' => '4',
+                'beds' => '5',
 
-                'baths' => '3',
+                'baths' => '1',
 
                 'sqft' => '3,651',
 
                 'year' => '2003',
 
-                'details' => 'This beautiful house in Georgia has 4 beds and 3 bathrooms. It is on a hill',
+                'details' => 'This beautiful house in Georgia has 5 beds and 1 bathroom. It is on a hill',
 
-                'gallery' => 'https://www.gettyimages.com/detail/photo/modern-architecture-home-green-on-green-summer-royalty-free-image/1220909247?adppopup=true',
+                'gallery' => 'https://photos.zillowstatic.com/fp/86762f324f621fd36f4dd7764e5c5ace-cc_ft_1536.webp',
 
                 'lat' => '32.8108505',
 
@@ -74,17 +74,17 @@ class PropertySeeder extends Seeder
 
                 'address' => '3610 SE 20th St, Ankeny, IA 50021',
 
-                'beds' => '4',
+                'beds' => '6',
 
-                'baths' => '3',
+                'baths' => '2',
 
                 'sqft' => '2,080',
 
                 'year' => '2007',
 
-                'details' => 'This beautiful house in Iowa has 4 beds and 3 bathrooms. It has many rooms.',
+                'details' => 'This beautiful house in Iowa has 6 beds and 2 bathrooms. It has many rooms.',
 
-                'gallery' => 'https://www.gettyimages.com/detail/photo/aerial-view-of-a-modern-american-craftsman-style-royalty-free-image/1222428750',
+                'gallery' => 'https://photos.zillowstatic.com/fp/52131e6e81e328aec6d6ff9da0938d8e-cc_ft_1536.webp',
 
                 'lat' => '41.710647572151395',
 
@@ -100,17 +100,17 @@ class PropertySeeder extends Seeder
 
                 'address' => '3963 Old Milton Hwy, Walla Walla, WA 99362',
 
-                'beds' => '4',
+                'beds' => '3',
 
-                'baths' => '3',
+                'baths' => '6',
 
                 'sqft' => '2,412',
 
                 'year' => '2001',
 
-                'details' => 'This beautiful house in Washington has 4 beds and 3 bathrooms. It has a big yard and many rooms.',
+                'details' => 'This beautiful house in Washington has 3 beds and 6 bathrooms. It has a big yard and many rooms.',
 
-                'gallery' => 'https://www.gettyimages.com/detail/photo/beautiful-country-house-and-garden-royalty-free-image/1275090412',
+                'gallery' => 'https://photos.zillowstatic.com/fp/27c7d58742b6a0177dd4b5cf27cd46cf-cc_ft_1536.webp',
 
                 'lat' => '46.0065512471295',
 
