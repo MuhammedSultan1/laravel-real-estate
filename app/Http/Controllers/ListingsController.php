@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use App\Models\Property;
 
 
 class ListingsController extends Controller
@@ -15,11 +16,11 @@ class ListingsController extends Controller
      */
     public function forSale(Request $request)
     {
-        // $form_data = array();
-        // $form_data['arrivalAirline'] = $input['arrivalAirline'];
+        //Get everything form the Property Model
+        $adminProperties = Property::all();
+        //return $adminProperties;
 
         $postal = $request->postal;
-        //dump($postal);
 
         $forSale = Http::withHeaders([
         'x-rapidapi-host' => 'realty-in-us.p.rapidapi.com',
@@ -80,9 +81,8 @@ class ListingsController extends Controller
 
           $combined->all();
         
-
-          dump($combined);
         return view('forSale.forSale',[
+            'adminProperties' => $adminProperties,
             'postal' => $postal,
             'forSale' => $forSale,
             'pluckedLon' => $pluckedLon,
@@ -155,6 +155,7 @@ class ListingsController extends Controller
             'similarProperties' => $similarProperties,
         ]);
     }
+
 
     //  /**
     //  * Display the specified resource.
