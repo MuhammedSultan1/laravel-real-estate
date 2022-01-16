@@ -34,9 +34,9 @@ Route::post('/forSale', 'App\Http\Controllers\ListingsController@forSale')->name
 
 Route::get('/forSale/{property}', 'App\Http\Controllers\ListingsController@show')->name('forSale.show');
 
-Route::get('/adminProperty', 'App\Http\Controllers\adminPropertyController@index')->name('adminProperties.adminProperty');
+Route::get('/adminProperty', 'App\Http\Controllers\adminPropertyController@index')->name('adminProperty');
 
-Route::get('/adminProperty/{slug}', 'App\Http\Controllers\adminPropertyController@show')->name('adminProperties.adminProperty.show');
+Route::get('/adminProperty/{slug}', 'App\Http\Controllers\adminPropertyController@show')->name('adminProperty.show');
 
 Route::get('/forRent', 'App\Http\Controllers\RentalController@forRent')->name('forRent');
 

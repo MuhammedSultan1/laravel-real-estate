@@ -17,7 +17,7 @@ class adminPropertyController extends Controller
     {
         //Get everything form the Property Model
         $adminProperties = Property::all();
-        dump($adminProperties);
+        //dump($adminProperties);
 
 
          return view('adminProperties.adminProperty',[
@@ -49,32 +49,43 @@ class adminPropertyController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  string  $slug
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
         //
-        // $adminProperties = Property::all();
+        // $adminProperties = DB::table('properties');
+        // dump($adminProperties);
+        
+        $details = Property::where('slug', $slug)->firstOrFail();
 
-        // $address = $adminProperties['address'];
+//        return view('adminProperty')->with('details', $details);
+        return view('adminProperties.show',[
+              'details' => $details,
+          ]);
 
-        //  //get latitude and longitude
-        // $lon = $adminProperties['lon'];
-        // $lat = $adminProperties['lat'];
+        // $photo  = adminProperties['gallery'];
+        // //$address = $adminProperties['address'];
+
+        //   //get latitude and longitude
+        //  $lon = $adminProperties['lon'];
+        //  $lat = $adminProperties['lat'];
           
-        //  //combine latitude and longitude
-        // $collection = collect(['lon', 'lat']);
+        //   //combine latitude and longitude
+        //  $latLonCollection = collect(['lon', 'lat']);
 
-        // $combined = $collection->combine([$lon, $lat]);
+        //  $combined = $latLonCollection->combine([$lon, $lat]);
 
-        // $combined->all();
+        //  $combined->all();
         
 
-        // return view('adminProperties.show',[
-        //     'adminProperty' => $adminProperty,
-        //     'combined' => $combined,
-        // ]);
+        //  return view('adminProperties.show',[
+        //      'adminProperties' => $adminProperties,
+        //      'combined' => $combined,
+        //      'photo' => $photo,
+        //  ]);
+
     }
 
     /**
