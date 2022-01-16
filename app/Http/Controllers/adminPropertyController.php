@@ -59,10 +59,11 @@ class adminPropertyController extends Controller
         // dump($adminProperties);
         
         $details = Property::where('slug', $slug)->firstOrFail();
-
+        $adminProperties = Property::all();
 //        return view('adminProperty')->with('details', $details);
         return view('adminProperties.show',[
               'details' => $details,
+              'adminProperties' => $adminProperties,
           ]);
 
         // $photo  = adminProperties['gallery'];

@@ -66,5 +66,30 @@
             </div>
         </div>
 </section>
-
+{{-- Similar homes section begins --}}
+          
+<section class="text-gray-600 body-font">
+  <div class="container px-5 py-24 mx-auto">
+    <div class="flex flex-wrap w-full mb-20">
+      <div class="lg:w-1/2 w-full mb-6 lg:mb-0">
+        <h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">Similar Properties</h1>
+      </div>
+    </div>
+    <div class="flex flex-wrap grid grid-cols-1 sm:grid-cols-1 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-5">
+        @foreach ($adminProperties as $similarProperty)
+        <a href="{{ route('adminProperty.show', $similarProperty['slug']) }}">
+        <div class="bg-white p-6 rounded-lg">
+          <img class="h-40 rounded w-full object-cover object-center mb-6" src="{{ $similarProperty['gallery'] ?? asset('public/images/img-not-available.jpeg') }}" alt="property image">
+          <h3 class="tracking-widest text-indigo-500 text-xs font-medium title-font">{{ $similarProperty['address'] }}</h3>
+          <h2 class="text-lg text-gray-900 font-medium title-font mb-4">${{ $similarProperty['price'] ?? 'Price not available' }}</h2>
+          <p class="leading-relaxed text-base">Beds {{ $similarProperty['beds'] }}</p>
+          <p class="leading-relaxed text-base">Baths {{ $similarProperty['baths'] }} </p>
+          <p class="leading-relaxed text-base">Sqft {{ $similarProperty['sqft'] }}</p>
+        </div>
+        </a>
+        @endforeach
+    </div>
+  </div>
+</section>
+        {{-- Similar homes section ends --}}
 @endsection
