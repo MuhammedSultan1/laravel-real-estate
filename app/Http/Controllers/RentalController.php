@@ -17,6 +17,10 @@ class RentalController extends Controller
      */
     public function forRent()
     {
+
+         //get adminProperty details
+        $adminProperties = Property::all();
+
         $forRent = Http::withHeaders([
         'x-rapidapi-host' => 'realty-in-us.p.rapidapi.com',
         'x-rapidapi-key' => env('RAPID_API_KEY'),
@@ -79,11 +83,12 @@ class RentalController extends Controller
           dump($combined);
         
         return view('forRent.forRent',[
+            'adminProperties' => $adminProperties,
             'forRent' => $forRent,
             'pluckedLon' => $pluckedLon,
             'pluckedLat' => $pluckedLat,
             'combined' => $combined,
-         ]);
+        ]);
     }
 
     /**
@@ -115,6 +120,9 @@ class RentalController extends Controller
      */
     public function show($id)
     {
+         $details = Property::where('slug', $slug)->firstOrFail();
+         $adminProperties = Property::all();
+
         $property = Http::withHeaders([
         'x-rapidapi-host' => 'realty-in-us.p.rapidapi.com',
         'x-rapidapi-key' => env('RAPID_API_KEY'),
@@ -149,6 +157,8 @@ class RentalController extends Controller
             'property' => $property,
             'combined' => $combined,
             'similarProperties' => $similarProperties,
+            'details' => $details,
+            'adminProperties' => $adminProperties,
         ]);
     }
 

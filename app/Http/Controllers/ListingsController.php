@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use App\Models\Property;
 
 
 
@@ -16,6 +17,9 @@ class ListingsController extends Controller
      */
     public function forSale(Request $request)
     {
+        //get adminProperty details
+        $adminProperties = Property::all();
+
         $postal = $request->postal;
 
         $forSale = Http::withHeaders([
@@ -116,6 +120,9 @@ class ListingsController extends Controller
      */
     public function show($id)
     {
+         $details = Property::where('slug', $slug)->firstOrFail();
+         $adminProperties = Property::all();
+
         $property = Http::withHeaders([
         'x-rapidapi-host' => 'realty-in-us.p.rapidapi.com',
         'x-rapidapi-key' => env('RAPID_API_KEY'),
@@ -149,6 +156,8 @@ class ListingsController extends Controller
             'property' => $property,
             'combined' => $combined,
             'similarProperties' => $similarProperties,
+            'details' => $details,
+            'adminProperties' => $adminProperties,
         ]);
     }
 

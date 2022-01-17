@@ -86,7 +86,7 @@
         </a>
         <div class="mt-4 lg:max-w-sm">
           <p class="text-sm text-purple-50">
-            This project was built with Laravel and MySQL.
+            This project was built with Laravel, MySQL and Javascript.
           </p>
           <p class="mt-4 text-sm text-purple-50">
             You can read more about this project by clicking the "About" link in the navigation

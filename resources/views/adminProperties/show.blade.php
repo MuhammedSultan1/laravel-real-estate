@@ -15,17 +15,17 @@
 <section class="text-gray-600 body-font">
    <div class="flex flex-col mb-10 lg:items-start items-center px-24">
         <div class="flex-grow">
-            <h1 class="text-gray-900 text-lg title-font font-medium my-6 ml-12">
+            <h1 class="text-gray-900 text-2xl title-font font-medium my-6 ml-12">
             {{ $details['address'] }}
             </h1>
-          <h2 class="text-gray-900 text-lg title-font font-medium mb-3 ml-12">Overview</h2>
+          <h2 class="text-gray-900 text-lg title-font font-medium mb-3 ml-12 mt-3">Overview</h2>
           <p class="leading-relaxed text-base ml-12">{{ $details['details'] }}</p>
         </div>
       </div>
       <div class="flex flex-col mb-10 lg:items-start items-center">
         <div class="flex-grow">
           <h2 class="text-gray-900 text-lg title-font font-medium mb-3">Features</h2>
-           <div class="container mx-auto grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 pt-6 gap-8">
+           <div class="container mx-auto grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 pt-6 gap-8">
                     <div class="rounded border-gray-300 h-24">
                         <div class="flex space-x-2 sm:space-x-4">
                         <div class="space-y-2">
@@ -50,6 +50,15 @@
                             <img src="https://img.icons8.com/ios/50/000000/price-tag-euro.png"/>
                             <p class="text-lg font-medium leading-snug">Price</p>
                             <p class="leading-snug">${{ $details['price'] }}</p>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="rounded border-gray-300 h-24">
+                        <div class="flex space-x-2 sm:space-x-4">
+                        <div class="space-y-2">
+                            <img src="https://img.icons8.com/external-justicon-lineal-justicon/64/000000/external-ruler-construction-justicon-lineal-justicon.png"/>
+                            <p class="text-lg font-medium leading-snug">Square Feet</p>
+                            <p class="leading-snug">{{ $details['sqft'] }}</p>
                         </div>
                     </div>
                     </div>
