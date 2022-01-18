@@ -48,6 +48,15 @@
                         </div>
                     </div>
                     </div>
+                     <div class="rounded border-gray-300 h-24">
+                        <div class="flex space-x-2 sm:space-x-4">
+                        <div class="space-y-2">
+                            <img src="https://img.icons8.com/external-justicon-lineal-justicon/64/000000/external-ruler-construction-justicon-lineal-justicon.png"/>
+                            <p class="text-lg font-medium leading-snug">Square Feet</p>
+                            <p class="leading-snug">{{ $property['building_size']['size'] ?? 'No data available'}}</p>
+                        </div>
+                    </div>
+                    </div>
                     <div class="rounded border-gray-300 h-24">
                         <div class="flex space-x-2 sm:space-x-4">
                         <div class="space-y-2">
