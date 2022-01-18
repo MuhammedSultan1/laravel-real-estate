@@ -3,7 +3,7 @@
 <section class="body-font my-24">
     <div class="grid grid-row-2 mx-0">
             <div class="sm:grid-cols-1 lg:grid-cols-2 flex justify-center items-center">
-                {{-- <div id="propertyMap"></div> --}}
+                <div id="propertyMap"></div>
             </div>
     </div>
 </section>
@@ -100,5 +100,48 @@
     </div>
   </div>
 </section>
+
+
         {{-- Similar homes section ends --}}
+        @push('custom-scripts')
+  <link href='https://unpkg.com/maplibre-gl@1.15.2/dist/maplibre-gl.css' rel='stylesheet' />
+  <script src='https://unpkg.com/maplibre-gl@1.15.2/dist/maplibre-gl.js'></script>
+  <style>
+    #propertyMap {
+      min-height: 500px;
+      height: 20vh;
+      width: 33vw;
+    }
+@media (min-width: 320px) { 
+    #propertyMap {
+      width: 100vw;
+    }  
+
+@media (min-width: 768px) { 
+    #propertyMap {
+      width: 100vw;
+    }  
+ }
+    
+  </style>
+@endpush
+ <script>
+    var coordinates ={!! json_encode($details->toArray()) !!};
+    console.log(coordinates);
+  
+const accessToken = "L4CAeBg0RDqXjqnZCEiNwJHsPbB8lyCt5EgxPDYHrJsymhFb9m7gQuW5H4dhJlCP";
+const map = new maplibregl.Map({
+      container: "propertyMap",
+      style: `https://api.jawg.io/styles/jawg-terrain.json?access-token=${accessToken}`,
+      zoom: 11,
+      center: [coordinates.lon, coordinates.lat],
+  }).addControl(new maplibregl.NavigationControl(), "top-right");
+  // This plugin is used for right to left languages
+  maplibregl.setRTLTextPlugin(
+      "https://unpkg.com/@mapbox/mapbox-gl-rtl-text@0.2.3/mapbox-gl-rtl-text.min.js"
+  );
+
+    new maplibregl.Marker().setLngLat([coordinates.lon, coordinates.lat]).addTo(map);
+
+  </script>
 @endsection

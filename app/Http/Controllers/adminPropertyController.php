@@ -60,6 +60,7 @@ class adminPropertyController extends Controller
         
         $details = Property::where('slug', $slug)->firstOrFail();
         $adminProperties = Property::all();
+
 //        return view('adminProperty')->with('details', $details);
         return view('adminProperties.show',[
               'details' => $details,

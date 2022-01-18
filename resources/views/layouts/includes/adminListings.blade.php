@@ -1,6 +1,6 @@
 @foreach ($adminProperties as $adminProperty)
                       <div class="max-w-sm mx-auto overflow-hidden bg-white rounded shadow-lg">
-                          <a href="{{ route('adminProperty', $adminProperty['slug']) }}">
+                          <a href="{{ route('adminProperty.show', $adminProperty['slug']) }}">
                             <img class="object-cover object-center w-full h-56 rounded" src="{{ $adminProperty->gallery }}" alt="Property">
                             <div class="px-6 py-4">
                                 <h1 class="text-xl font-semibold text-gray-800">${{ $adminProperty['price'] ?? ''}}</h1>
