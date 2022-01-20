@@ -45,3 +45,7 @@ Route::get('/forRent/{property}', 'App\Http\Controllers\RentalController@show')-
 Route::get('/map', function () {
     return view('mapbox/map');
 });
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});
