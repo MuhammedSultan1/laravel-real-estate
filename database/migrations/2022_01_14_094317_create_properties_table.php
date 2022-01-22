@@ -21,7 +21,7 @@ class CreatePropertiesTable extends Migration
             $table->string('baths');
             $table->string('sqft');
             $table->string('year');
-            $table->string('details');
+            $table->longText('details');
             $table->string('gallery');
             $table->string('lat')->unique();
             $table->string('lon')->unique();

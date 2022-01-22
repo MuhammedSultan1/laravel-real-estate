@@ -19,7 +19,7 @@
             {{ $details['address'] }}
             </h1>
           <h2 class="text-gray-900 text-lg title-font font-medium mb-3 ml-12 mt-3">Overview</h2>
-          <p class="leading-relaxed text-base ml-12">{{ $details['details'] }}</p>
+          <p class="leading-relaxed text-base ml-12">{!! $details['details'] !!}</p>
         </div>
       </div>
       <div class="flex flex-col mb-10 lg:items-start items-center">
