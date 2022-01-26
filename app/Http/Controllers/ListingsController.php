@@ -8,6 +8,7 @@ use App\Models\Property;
 
 
 
+
 class ListingsController extends Controller
 {
     /**
@@ -159,6 +160,18 @@ class ListingsController extends Controller
             //'details' => $details,
             //'adminProperties' => $adminProperties,
         ]);
+    }
+
+    function addToWishlist(Request $req){
+        if($req->session()->has('user')){
+            $wishlist = new Wishlist;
+            $wishlist->user_id=$req->session()->get('user')['id'];
+            $wishlist->property_id=$req->property_id;
+            $wishlist->save();
+        }
+        else{
+            return redirect('/login');
+        }
     }
 
 

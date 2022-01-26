@@ -20,8 +20,9 @@ Route::get('/login', function () {
     return view('auth.login');
 });
 
-
 //Route::get('/login','App\Http\Controllers\NormalUserController@login');
+
+Route::post('/add_to_wishlist','App\Http\Controllers\NormalUserController@addToWishlist');
 
 Route::post('/login','App\Http\Controllers\NormalUserController@login');
 
