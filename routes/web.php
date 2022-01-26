@@ -1,6 +1,4 @@
 <?php
-
-
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,21 +14,18 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-
 });
 
-//Route::post('/forSale/{postal}', 'App\Http\Controllers\ListingsController@forSale')->name('sale');
+Route::get('/login', function () {
+    return view('auth.login');
+});
+
+
+//Route::get('/login','App\Http\Controllers\NormalUserController@login');
+
+Route::post('/login','App\Http\Controllers\NormalUserController@login');
+
 Route::post('/forSale', 'App\Http\Controllers\ListingsController@forSale')->name('forSale');
-
-//Route::post('/forSale/{postal}', 'App\Http\Controllers\ListingsController@forSale')->name('forSale');
-
-// Route::get('/forSale/{postal}', function () {
-//     return view('forSale', ['postal' => $postal]);
-// });
-    //return view('forSale/{postal}', ['postal' => $postal]);
-
-//Route::post('/forSale/{postal}', 'App\Http\Controllers\ListingsController@forSale')->name('forSale/{postal}');
-
 
 Route::get('/forSale/{property}', 'App\Http\Controllers\ListingsController@show')->name('forSale.show');
 

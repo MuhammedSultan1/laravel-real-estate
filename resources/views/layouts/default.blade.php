@@ -54,10 +54,10 @@
                         <a href="/" aria-label="About" title="About" class="mt-3 md:mt-0 font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-purple-600">About</a>
                     </li>
                     <li>
-                        <a href="/" aria-label="Sign in" title="Sign in" class="mt-3 md:mt-0 font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-purple-600">Sign in</a>
+                        <a href="/login" aria-label="Sign in" title="Sign in" class="mt-3 md:mt-0 font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-purple-600">Sign in</a>
                     </li>
                     <li>
-                        <a href="/" aria-label="Sign up" title="Sign up" class="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-700 hover:bg-purple-800 focus:shadow-outline focus:outline-none">Sign up</a>
+                        <a href="/register" aria-label="Sign up" title="Sign up" class="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-700 hover:bg-purple-800 focus:shadow-outline focus:outline-none">Sign up</a>
                     </li>
                 </ul>
                  <livewire:search-dropdown>
