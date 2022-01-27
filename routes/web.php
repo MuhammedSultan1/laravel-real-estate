@@ -1,5 +1,6 @@
 <?php
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ListingsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,16 +17,28 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//USER AUTHENTICATION
 Route::get('/login', function () {
     return view('auth.login');
 });
 
-//Route::get('/login','App\Http\Controllers\NormalUserController@login');
-
-Route::post('/add_to_wishlist','App\Http\Controllers\NormalUserController@addToWishlist');
-
 Route::post('/login','App\Http\Controllers\NormalUserController@login');
 
+Route::get('/logout', function () {
+    Session::forget('user');
+    return redirect('/');
+});
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});
+
+//WISHLIST
+Route::post('/add_to_wishlist',[ListingsController::class, 'addToWishlist']);
+
+Route::get("wishlist",[ListingsController::class, 'displayWishlist']);
+
+//PROPERTIES
 Route::post('/forSale', 'App\Http\Controllers\ListingsController@forSale')->name('forSale');
 
 Route::get('/forSale/{property}', 'App\Http\Controllers\ListingsController@show')->name('forSale.show');
@@ -40,8 +53,4 @@ Route::get('/forRent/{property}', 'App\Http\Controllers\RentalController@show')-
 
 Route::get('/map', function () {
     return view('mapbox/map');
-});
-
-Route::group(['prefix' => 'admin'], function () {
-    Voyager::routes();
 });

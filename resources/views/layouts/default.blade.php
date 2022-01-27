@@ -1,3 +1,10 @@
+<?php
+use App\Http\Controllers\ListingsController;
+$total = 0;
+if (Session::has('user')) {
+  $total = ListingsController::wishlistItem();
+}
+?>
 <!doctype html>
 <html>
 <head>
@@ -30,8 +37,8 @@
 <nav class="border-b border-gray-400">
             <div class="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between px-4 py-6">
                 <ul class="flex flex-col md:flex-row items-center md:space-x-10 md:ml-24 lg:flex">
-                    <li>
-                        <a href="/" aria-label="Our product" title="Our product" class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-purple-600">Product</a>
+                     <li>
+                        <a href="/" aria-label="About" title="About" class="mt-3 md:mt-0 font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-purple-600">About</a>
                     </li>
                     <li>
                         <a href="/" aria-label="Our product" title="Our product" class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-purple-600">Features</a>
@@ -50,15 +57,27 @@
                     <span class="ml-2 text-xl font-bold tracking-wide text-gray-800 uppercase">Property Experts</span>
                 </a>
                 <ul class="flex flex-col md:flex-row items-center md:space-x-10">
-                    <li>
-                        <a href="/" aria-label="About" title="About" class="mt-3 md:mt-0 font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-purple-600">About</a>
+                    @if(Session::has('user'))
+                    <li class="mt-3 md:mt-0 font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-purple-600">
+                      {{ Session::get('user')['name'] }}
                     </li>
                     <li>
-                        <a href="/login" aria-label="Sign in" title="Sign in" class="mt-3 md:mt-0 font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-purple-600">Sign in</a>
+                        <a href="/wishlist" aria-label="Wishlist" title="Wishlist" class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-purple-600">My Wishlist ({{ $total }})</a>
+                    </li>
+                    <li>
+                        <a href="/logout" aria-label="Sign out" title="Sign out" class="mt-3 md:mt-0 inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-700 hover:bg-purple-800 focus:shadow-outline focus:outline-none">Sign out</a>
+                    </li>
+                    @else
+                    <li>
+                      <a href="/https://github.com/MuhammedSultan1" aria-label="My GitHub" title="My GitHub" class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-purple-600">My GitHub</a>
+                    </li>
+                    <li>
+                      <a href="/login" aria-label="Sign in" title="Sign in" class="mt-3 md:mt-0 inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-700 hover:bg-purple-800 focus:shadow-outline focus:outline-none">Sign in</a>
                     </li>
                     <li>
                         <a href="/register" aria-label="Sign up" title="Sign up" class="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-700 hover:bg-purple-800 focus:shadow-outline focus:outline-none">Sign up</a>
                     </li>
+                    @endif
                 </ul>
                  <livewire:search-dropdown>
             </div>

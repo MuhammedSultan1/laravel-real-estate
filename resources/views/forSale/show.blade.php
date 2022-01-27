@@ -12,6 +12,7 @@
      <form action="/add_to_wishlist" method="POST">
        @csrf
        <input type="hidden" name="property_id" value="{{ $property['property_id'] }}">
+       <button class="px-8 py-3 ml-12 font-semibold text-gray-50 rounded-full bg-purple-700 hover:bg-purple-800">Add to wishlist</button>
      </form>
         <div class="flex-grow">
             <h1 class="text-gray-900 text-lg title-font font-medium my-6 ml-12">
