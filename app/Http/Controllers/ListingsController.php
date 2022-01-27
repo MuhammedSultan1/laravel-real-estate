@@ -195,7 +195,7 @@ class ListingsController extends Controller
 
         //for every property_id in the user's database, make an api call which takes the property_ids and places them in the api call
         //and gets the products details
-         foreach($properties as $property):
+        foreach($properties as $property):
             $propertyDetails = Http::withHeaders([
             'x-rapidapi-host' => 'realty-in-us.p.rapidapi.com',
             'x-rapidapi-key' => env('RAPID_API_KEY'),
@@ -204,6 +204,7 @@ class ListingsController extends Controller
             ])->json()['properties']['0'];
         endforeach;
 
+        dump($propertyDetails);
          return view('wishlist',
         [
         'properties' => $properties,

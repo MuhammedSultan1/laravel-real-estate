@@ -8,20 +8,84 @@
       <p class="lg:w-1/2 w-full leading-relaxed text-gray-500">View your saved properties here.</p>
     </div>
     <div class="flex flex-wrap -m-4">
+        @foreach ($properties as $property)
         <div class="max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800">
-            <img class="object-cover object-center w-full h-56" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80" alt="avatar">
-            
+            {{-- <img class="object-cover object-center w-full h-56" src="{{ $propertyDetails['photos']['0']['href'] }}" alt="avatar"> --}}
+            <div id="carouselExampleIndicators" class="carousel slide relative" data-bs-ride="carousel">
+  <div class="carousel-indicators absolute right-0 bottom-0 left-0 flex justify-center p-0 mb-4">
+    <button
+      type="button"
+      data-bs-target="#carouselExampleIndicators"
+      data-bs-slide-to="0"
+      class="active"
+      aria-current="true"
+      aria-label="Slide 1"
+    ></button>
+    <button
+      type="button"
+      data-bs-target="#carouselExampleIndicators"
+      data-bs-slide-to="1"
+      aria-label="Slide 2"
+    ></button>
+    <button
+      type="button"
+      data-bs-target="#carouselExampleIndicators"
+      data-bs-slide-to="2"
+      aria-label="Slide 3"
+    ></button>
+  </div>
+  <div class="carousel-inner relative w-full overflow-hidden">
+    <div class="carousel-item active float-left w-full">
+      <img
+        src="{{ $propertyDetails['photos']['0']['href'] }}"
+        class="block w-full"
+        alt="Wild Landscape"
+      />
+    </div>
+    <div class="carousel-item float-left w-full">
+      <img
+        src="{{ $propertyDetails['photos']['1']['href'] }}"
+        class="block w-full"
+        alt="Camera"
+      />
+    </div>
+    <div class="carousel-item float-left w-full">
+      <img
+        src="{{ $propertyDetails['photos']['2']['href'] }}"
+        class="block w-full"
+        alt="Exotic Fruits"
+      />
+    </div>
+  </div>
+  <button
+    class="carousel-control-prev absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline left-0"
+    type="button"
+    data-bs-target="#carouselExampleIndicators"
+    data-bs-slide="prev"
+  >
+    <span class="carousel-control-prev-icon inline-block bg-no-repeat" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button
+    class="carousel-control-next absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline right-0"
+    type="button"
+    data-bs-target="#carouselExampleIndicators"
+    data-bs-slide="next"
+  >
+    <span class="carousel-control-next-icon inline-block bg-no-repeat" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
             <div class="flex items-center px-6 py-3 bg-gray-900">
                 <svg class="w-6 h-6 text-white fill-current" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M17 21C15.8954 21 15 20.1046 15 19V15C15 13.8954 15.8954 13 17 13H19V12C19 8.13401 15.866 5 12 5C8.13401 5 5 8.13401 5 12V13H7C8.10457 13 9 13.8954 9 15V19C9 20.1046 8.10457 21 7 21H3V12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12V21H17ZM19 15H17V19H19V15ZM7 15H5V19H7V15Z"/>
                 </svg>
-
-                <h1 class="mx-3 text-lg font-semibold text-white">Focusing</h1>
+                <h1 class="mx-3 text-lg font-semibold text-white"></h1>
             </div>
             <div class="px-6 py-4">
                 <h1 class="text-xl font-semibold text-gray-800 dark:text-white">Patterson johnson</h1>
 
-                <p class="py-2 text-gray-700 dark:text-gray-400">Full Stack maker & UI / UX Designer , love hip hop music Author of Building UI.</p>
+                <p class="py-2 text-gray-700 dark:text-gray-400">{{ $propertyDetails['description'] }}</p>
                 
                 <div class="flex items-center mt-4 text-gray-700 dark:text-gray-200">
                     <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -48,6 +112,7 @@
             </div>
         </div>
     </div>
+    @endforeach
     <button class="flex mx-auto mt-16 text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Button</button>
   </div>
 </section>
