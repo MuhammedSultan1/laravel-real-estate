@@ -11,7 +11,14 @@
    <div class="flex flex-col mb-10 lg:items-start items-center px-24">
      <form action="/add_to_wishlist" method="POST">
        @csrf
-       <input type="hidden" name="property_id" value="{{ $property['property_id'] }}">
+       <input type="hidden" name="property_id" value="{{ $property['property_id'] ?? 'No Info' }}">
+       <input type="hidden" name="image" value="{{ $property['photos']['0']['href'] ?? asset('public/images/img-not-available.jpeg') }}">
+       <input type="hidden" name="price" value="{{ $property['price'] ?? 'No Info' }}">
+       <input type="hidden" name="description" value="{{ $property['description'] ?? 'No Info' }}">
+       <input type="hidden" name="address" value="{{ $property['address']['line'] ?? 'No Info' }}{{ $property['address']['city'] ?? 'No Info' }}{{ $property['address']['state_code'] ?? 'No Info' }}{{ $property['address']['postal_code'] ?? 'No Info' }}">
+       <input type="hidden" name="baths" value="{{ $property['baths'] ?? 'No Info' }}">
+       <input type="hidden" name="beds" value="{{ $property['beds'] ?? 'No Info' }}">
+       <input type="hidden" name="sqft" value="{{ $property['building_size']['size'] ?? 'No Info' }}">
        <button class="px-8 py-3 ml-12 font-semibold text-gray-50 rounded-full bg-purple-700 hover:bg-purple-800">Add to wishlist</button>
      </form>
         <div class="flex-grow">

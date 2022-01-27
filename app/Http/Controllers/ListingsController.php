@@ -8,6 +8,7 @@ use App\Models\Property;
 use App\Models\Wishlist;
 use Session;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 
 
@@ -170,6 +171,13 @@ class ListingsController extends Controller
             $wishlist = new Wishlist;
             $wishlist->user_id=$req->session()->get('user')['id'];
             $wishlist->property_id=$req->property_id;
+            $wishlist->image=$req->image;
+            $wishlist->price=$req->price;
+            $wishlist->description=$req->description;
+            $wishlist->address=$req->address;
+            $wishlist->baths=$req->baths;
+            $wishlist->beds=$req->beds;
+            $wishlist->sqft=$req->sqft;
             $wishlist->save();
             return redirect('/');
         }
@@ -186,30 +194,38 @@ class ListingsController extends Controller
     function displayWishlist(){
         $userId = Session::get('user')['id'];
         
+        $properties = DB::table('wishlists')
+        ->join('saved_properties', 'wishlists.property_id', '=', 'saved_properties.id')
+        ->where('wishlists.user_id', $userId)
+        ->select('wishlists.*')
+        ->get();
+        
         //get everything from the cart
-        $properties = Wishlist::all();
+        //$properties = Wishlist::all();
 
-        foreach($properties as $property):
-            $property_id = $property['property_id'];
-        endforeach;
+        // foreach($properties as $property):
+        //     $property_id = $property['property_id'];
+        // endforeach;
 
         //for every property_id in the user's database, make an api call which takes the property_ids and places them in the api call
         //and gets the products details
-        foreach($properties as $property):
-            $propertyDetails = Http::withHeaders([
-            'x-rapidapi-host' => 'realty-in-us.p.rapidapi.com',
-            'x-rapidapi-key' => env('RAPID_API_KEY'),
-            ])->get('https://realty-in-us.p.rapidapi.com/properties/v2/detail', [
-                'property_id' => $property_id,
-            ])->json()['properties']['0'];
-        endforeach;
+        // foreach($properties as $property):
+        //     $propertyDetails = Http::withHeaders([
+        //     'x-rapidapi-host' => 'realty-in-us.p.rapidapi.com',
+        //     'x-rapidapi-key' => env('RAPID_API_KEY'),
+        //     ])->get('https://realty-in-us.p.rapidapi.com/properties/v2/detail', [
+        //         'property_id' => $property_id,
+        //     ])->json()['properties']['0'];
+        // endforeach;
 
-        dump($propertyDetails);
+        //$propertyDescription = Str::limit($propertyDetails['description'], 180);
+        
          return view('wishlist',
         [
         'properties' => $properties,
-        'propertyDetails' => $propertyDetails,
-        'property_id' => $property_id,
+        //'propertyDetails' => $propertyDetails,
+        //'property_id' => $property_id,
+        //'propertyDescription' => $propertyDescription,
         ]);
     }
 
