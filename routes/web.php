@@ -29,6 +29,13 @@ Route::get('/logout', function () {
     return redirect('/');
 });
 
+Route::get('/register', function () {
+    return view('auth.register');
+});
+
+Route::post('/register','App\Http\Controllers\NormalUserController@register');
+
+
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
@@ -37,6 +44,8 @@ Route::group(['prefix' => 'admin'], function () {
 Route::post('/add_to_wishlist',[ListingsController::class, 'addToWishlist']);
 
 Route::get("wishlist",[ListingsController::class, 'displayWishlist']);
+
+Route::get("remove_from_wishlist/{id}", [ListingsController::class, 'removeFromWishlist']);
 
 //PROPERTIES
 Route::post('/forSale', 'App\Http\Controllers\ListingsController@forSale')->name('forSale');

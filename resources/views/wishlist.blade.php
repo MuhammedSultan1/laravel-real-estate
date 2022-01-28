@@ -35,7 +35,11 @@
                         <img src="https://img.icons8.com/ios/32/000000/empty-bed.png"/>
                     <h1 class="px-2 text-sm">Beds: {{ $property->beds ?? 'No info available' }}</h1>
                 </div>
-
+                <div class="my-4">
+                    <a href="/remove_from_wishlist/{{ $property->id }}">
+                      <button type="button" class="px-8 py-3 font-semibold text-gray-50 rounded-full bg-purple-600 hover:bg-purple-800">Remove from wishlist</button>
+                    </a>
+                </div>
             </div>
         </div>      
         @endforeach

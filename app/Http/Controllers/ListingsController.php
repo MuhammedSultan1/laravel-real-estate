@@ -125,9 +125,6 @@ class ListingsController extends Controller
      */
     public function show($id)
     {
-        //  $details = Property::where('slug', $slug)->firstOrFail();
-        //  $adminProperties = Property::all();
-
         $property = Http::withHeaders([
         'x-rapidapi-host' => 'realty-in-us.p.rapidapi.com',
         'x-rapidapi-key' => env('RAPID_API_KEY'),
@@ -161,7 +158,6 @@ class ListingsController extends Controller
             'property' => $property,
             'combined' => $combined,
             'similarProperties' => $similarProperties,
-            //'adminProperties' => $adminProperties,
         ]);
     }
 
@@ -191,33 +187,20 @@ class ListingsController extends Controller
     }
 
     function displayWishlist(){
-        //$userId = Session::get('user')['id'];
-        
         //get everything from the cart
          $properties = DB::table('wishlists')
          ->select('wishlists.*')
          ->get();
-
-
-        //for every property_id in the user's database, make an api call which takes the property_ids and places them in the api call
-        //and gets the products details
-        // foreach($properties as $property):
-        //     $propertyDetails = Http::withHeaders([
-        //     'x-rapidapi-host' => 'realty-in-us.p.rapidapi.com',
-        //     'x-rapidapi-key' => env('RAPID_API_KEY'),
-        //     ])->get('https://realty-in-us.p.rapidapi.com/properties/v2/detail', [
-        //         'property_id' => $property_id,
-        //     ])->json()['properties']['0'];
-        // endforeach;
-
-        //$propertyDescription = Str::limit($propertyDetails['description'], 180);
         
          return view('wishlist',
         [
         'properties' => $properties,
-        //'property' => $property,
-        //'propertyDescription' => $propertyDescription,
         ]);
+    }
+
+    function removeFromWishlist($id){
+        Wishlist::destroy($id);
+        return redirect('/wishlist');
     }
 
     //  /**

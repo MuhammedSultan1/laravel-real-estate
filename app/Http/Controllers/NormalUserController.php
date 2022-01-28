@@ -21,4 +21,13 @@ class NormalUserController extends Controller
             return redirect('/wishlist');
         }
     }
+    function register(Request $req){
+        return $req->input();
+        $user = new NormalUser;
+        $user->name=$req->name;
+        $user->email=$req->email;
+        $user->password=Hash::make($req->password);
+        $user->save();
+        return redirect('/login');
+    }
 }
