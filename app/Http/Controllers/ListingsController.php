@@ -187,36 +187,26 @@ class ListingsController extends Controller
     }
 
     function displayWishlist(){
+        $userId = Session::get('user')['id'];
         //get everything from the cart
          $properties = DB::table('wishlists')
+         ->where('wishlists.user_id', $userId)
          ->select('wishlists.*')
          ->get();
         
          return view('wishlist',
         [
+        'userId' => $userId,
         'properties' => $properties,
         ]);
     }
 
-    function removeFromWishlist($id){
-        Wishlist::destroy($id);
-        return redirect('/wishlist');
+    function removeFromWishlist(Request $req, $id){
+        if($req->session()->has('user')){
+            Wishlist::destroy($id);
+            return redirect('/wishlist');
+        };
     }
-
-    //  /**
-    //  * Display the specified resource.
-    //  *
-    //  * @param  int  $id
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function similarProperties($id)
-    // {
-
-
-    //     return view('show',[
-
-    //     ]);
-    // }
 
     /**
      * Show the form for editing the specified resource.

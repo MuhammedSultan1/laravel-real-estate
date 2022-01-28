@@ -14,7 +14,7 @@
                       <div>
                       <label for="email" class="block text-sm font-medium text-gray-700"> Your Name</label>
                       <div class="mt-1">
-                        <input id="email" name="email" type="email" placeholder="Your Name" autocomplete="email" required="" class="
+                        <input id="name" name="name" type="text" placeholder="Your Name" autocomplete="name" required="" class="
                       block
                       w-full
                       px-5

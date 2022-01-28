@@ -22,7 +22,6 @@ class NormalUserController extends Controller
         }
     }
     function register(Request $req){
-        return $req->input();
         $user = new NormalUser;
         $user->name=$req->name;
         $user->email=$req->email;
