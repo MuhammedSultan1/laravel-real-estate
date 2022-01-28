@@ -147,8 +147,7 @@ class ListingsController extends Controller
         $combined->all();
         
         // make the api call for similar properties
-        
-        $similarProperties = Http::withHeaders([
+            $similarProperties = Http::withHeaders([
         'x-rapidapi-host' => 'realty-in-us.p.rapidapi.com',
         'x-rapidapi-key' => env('RAPID_API_KEY'),
         ])->get('https://realty-in-us.p.rapidapi.com/properties/list-similarities', [
@@ -157,11 +156,11 @@ class ListingsController extends Controller
 	        'prop_status' => 'for_sale'
         ])->json()['results']['similar_homes']['properties'];
 
+        
         return view('forSale.show',[
             'property' => $property,
             'combined' => $combined,
             'similarProperties' => $similarProperties,
-            //'details' => $details,
             //'adminProperties' => $adminProperties,
         ]);
     }
@@ -192,20 +191,13 @@ class ListingsController extends Controller
     }
 
     function displayWishlist(){
-        $userId = Session::get('user')['id'];
-        
-        $properties = DB::table('wishlists')
-        ->join('saved_properties', 'wishlists.property_id', '=', 'saved_properties.id')
-        ->where('wishlists.user_id', $userId)
-        ->select('wishlists.*')
-        ->get();
+        //$userId = Session::get('user')['id'];
         
         //get everything from the cart
-        //$properties = Wishlist::all();
+         $properties = DB::table('wishlists')
+         ->select('wishlists.*')
+         ->get();
 
-        // foreach($properties as $property):
-        //     $property_id = $property['property_id'];
-        // endforeach;
 
         //for every property_id in the user's database, make an api call which takes the property_ids and places them in the api call
         //and gets the products details
@@ -223,8 +215,7 @@ class ListingsController extends Controller
          return view('wishlist',
         [
         'properties' => $properties,
-        //'propertyDetails' => $propertyDetails,
-        //'property_id' => $property_id,
+        //'property' => $property,
         //'propertyDescription' => $propertyDescription,
         ]);
     }

@@ -16,7 +16,14 @@ class CreateWishlistsTable extends Migration
         Schema::create('wishlists', function (Blueprint $table) {
             $table->id();
             $table->string('property_id');
+            $table->longText('image');
             $table->integer('user_id');
+            $table->string('price');
+            $table->longText('description');
+            $table->longText('address');
+            $table->string('baths');
+            $table->string('beds');
+            $table->string('sqft');
             $table->timestamps();
         });
     }
