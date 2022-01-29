@@ -31,6 +31,7 @@ if (Session::has('user')) {
     }
   </style>
   @stack('custom-scripts')
+  @livewireStyles
 </head>
 <body class="m-0">
     {{-- NAVBAR BEGINS --}}
@@ -79,7 +80,6 @@ if (Session::has('user')) {
                     </li>
                     @endif
                 </ul>
-                 <livewire:search-dropdown>
             </div>
         </nav>
 {{-- NAVBAR ENDS --}}
@@ -210,5 +210,6 @@ if (Session::has('user')) {
   </div>
 </div>
 {{-- FOOTER ENDS --}}
+@livewireScripts
 </body>
 </html>
