@@ -42,10 +42,7 @@ if (Session::has('user')) {
                         <a href="/" aria-label="About" title="About" class="mt-3 md:mt-0 font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-purple-600">About</a>
                     </li>
                     <li>
-                        <a href="/" aria-label="Our product" title="Our product" class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-purple-600">Features</a>
-                    </li>
-                    <li>
-                        <a href="/" aria-label="Product pricing" title="Product pricing" class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-purple-600">Pricing</a>
+                        <a href="https://github.com/MuhammedSultan1" aria-label="GitHub" title="GitHub" class="font-medium ml-10 tracking-wide text-gray-700 transition-colors duration-200 hover:text-purple-600">My GitHub</a>
                     </li>
                 </ul>
                 <a href="/" aria-label="Company" title="Company" class="inline-flex items-center">
@@ -69,9 +66,6 @@ if (Session::has('user')) {
                         <a href="/logout" aria-label="Sign out" title="Sign out" class="mt-3 md:mt-0 inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-700 hover:bg-purple-800 focus:shadow-outline focus:outline-none">Sign out</a>
                     </li>
                     @else
-                    <li>
-                      <a href="/https://github.com/MuhammedSultan1" aria-label="My GitHub" title="My GitHub" class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-purple-600">My GitHub</a>
-                    </li>
                     <li>
                       <a href="/login" aria-label="Sign in" title="Sign in" class="mt-3 md:mt-0 inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-700 hover:bg-purple-800 focus:shadow-outline focus:outline-none">Sign in</a>
                     </li>
