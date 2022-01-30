@@ -48,7 +48,7 @@ Route::get("wishlist",[ListingsController::class, 'displayWishlist']);
 Route::get("remove_from_wishlist/{id}", [ListingsController::class, 'removeFromWishlist']);
 
 //PROPERTIES
-Route::post('/forSale', 'App\Http\Controllers\ListingsController@forSale')->name('forSale');
+Route::post('/forSale/{state_code}/{city}/{postal}', 'App\Http\Controllers\ListingsController@forSale')->name('forSale');
 
 Route::get('/forSale/{property}', 'App\Http\Controllers\ListingsController@show')->name('forSale.show');
 

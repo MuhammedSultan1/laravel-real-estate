@@ -25,14 +25,6 @@ class HomePageSearchBar extends Component
         }
 
         if(strlen($this->search) >= 2){
-            $addresses = Http::withHeaders([
-            'x-rapidapi-host' => 'autocomplete-usa.p.rapidapi.com',
-            'x-rapidapi-key' => env('RAPID_API_KEY'),
-            ])->get('https://autocomplete-usa.p.rapidapi.com/marketplace/autocomplete/usa/addresses/'.$this->search, [
-            ])->json()['Result'];
-        }
-
-        if(strlen($this->search) >= 2){
             $zipcodes = Http::withHeaders([
             'x-rapidapi-host' => 'autocomplete-usa.p.rapidapi.com',
             'x-rapidapi-key' => env('RAPID_API_KEY'),
@@ -44,8 +36,7 @@ class HomePageSearchBar extends Component
 
         return view('livewire.home-page-search-bar',[
             'cities' => collect($cities)->take(5),
-            'addresses' => collect($addresses)->take(2),
-            'zipcodes' => collect($zipcodes)->take(2),
+            'zipcodes' => collect($zipcodes)->take(5),
         ]);
     }
 }
