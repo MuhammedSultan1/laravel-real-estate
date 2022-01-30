@@ -17,7 +17,7 @@
           Let us help you find the perfect home.
         </h2>
         <p class="text-base text-gray-700 md:text-lg">
-            Enter a zipcode in the field below and click search.
+            Enter a zipcode, address or city in the field below and click search.
         </p>
         <p class="text-base text-gray-700 md:text-lg">
             We will take care of the rest.
@@ -37,6 +37,14 @@
   </div>
 </div>           
 {{-- END OF TOP SECTION --}}
+{{-- WHITE SPACE --}}
+
+                <div class="container mx-auto grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 pt-6 gap-8">
+                    <div class="rounded h-24"></div>
+                    <div class="rounded h-24"></div>
+                </div>
+            
+{{-- END OF WHITE SPACE --}}
 {{-- WHY CHOOSE US SECTION BEGINS --}}
 <div class="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
   <div class="flex flex-col lg:flex-row">
