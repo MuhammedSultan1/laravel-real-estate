@@ -56,9 +56,9 @@ Route::get('/adminProperty', 'App\Http\Controllers\adminPropertyController@index
 
 Route::get('/adminProperty/{slug}', 'App\Http\Controllers\adminPropertyController@show')->name('adminProperty.show');
 
-Route::get('/forRent', 'App\Http\Controllers\RentalController@forRent')->name('forRent');
+// Route::get('/forRent', 'App\Http\Controllers\RentalController@forRent')->name('forRent');
 
-Route::get('/forRent/{property}', 'App\Http\Controllers\RentalController@show')->name('forRent.show');
+// Route::get('/forRent/{property}', 'App\Http\Controllers\RentalController@show')->name('forRent.show');
 
 Route::get('/map', function () {
     return view('mapbox/map');

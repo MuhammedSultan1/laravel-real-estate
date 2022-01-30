@@ -25,12 +25,19 @@ class ListingsController extends Controller
         //get adminProperty details
         $adminProperties = Property::all();
 
+        
+        $state_code = $request->state_code;
+        
+        $city = $request->city;   
+
         $postal = $request->postal;
 
         $forSale = Http::withHeaders([
         'x-rapidapi-host' => 'realty-in-us.p.rapidapi.com',
         'x-rapidapi-key' => env('RAPID_API_KEY'),
         ])->get('https://realty-in-us.p.rapidapi.com/properties/list-for-sale', [
+            'state_code' => $state_code,
+	        'city' => $city,
             'postal_code' => $postal,
             'offset' => '0',
             'limit' => '52',

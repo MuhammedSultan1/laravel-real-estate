@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use App\Models\Property;
+use App\Models\Wishlist;
+use Session;
+use Illuminate\Support\Facades\DB;
+
 
 
 
@@ -15,17 +19,25 @@ class RentalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function forRent()
+    public function forRent(Request $request)
     {
 
          //get adminProperty details
         $adminProperties = Property::all();
 
+        $state_code = $request->state_code;
+        
+        $city = $request->city;   
+
+        $postal = $request->postal;
+
         $forRent = Http::withHeaders([
         'x-rapidapi-host' => 'realty-in-us.p.rapidapi.com',
         'x-rapidapi-key' => env('RAPID_API_KEY'),
         ])->get('https://realty-in-us.p.rapidapi.com/properties/list-for-rent', [
-            'postal_code' => '32244',
+            'state_code' => $state_code,
+	        'city' => $city,
+            'postal_code' => $postal,
             'offset' => '0',
             'limit' => '52',
             'sort' => 'relevance'
@@ -160,6 +172,54 @@ class RentalController extends Controller
             'details' => $details,
             'adminProperties' => $adminProperties,
         ]);
+    }
+
+
+    function addToWishlist(Request $req){
+        if($req->session()->has('user')){
+            $wishlist = new Wishlist;
+            $wishlist->user_id=$req->session()->get('user')['id'];
+            $wishlist->property_id=$req->property_id;
+            $wishlist->image=$req->image;
+            $wishlist->price=$req->price;
+            $wishlist->description=$req->description;
+            $wishlist->address=$req->address;
+            $wishlist->baths=$req->baths;
+            $wishlist->beds=$req->beds;
+            $wishlist->sqft=$req->sqft;
+            $wishlist->save();
+            return redirect('/');
+        }
+        else{
+            return redirect('/login');
+        }
+    }
+
+    static function wishlistItem(){
+        $userId = Session::get('user')['id'];
+        return Wishlist::where('user_id', $userId)->count();
+    }
+
+    function displayWishlist(){
+        $userId = Session::get('user')['id'];
+        //get everything from the cart
+         $properties = DB::table('wishlists')
+         ->where('wishlists.user_id', $userId)
+         ->select('wishlists.*')
+         ->get();
+        
+         return view('wishlist',
+        [
+        'userId' => $userId,
+        'properties' => $properties,
+        ]);
+    }
+
+    function removeFromWishlist(Request $req, $id){
+        if($req->session()->has('user')){
+            Wishlist::destroy($id);
+            return redirect('/wishlist');
+        };
     }
 
     /**
