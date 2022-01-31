@@ -37,12 +37,15 @@ if (Session::has('user')) {
     {{-- NAVBAR BEGINS --}}
 <nav class="border-b border-gray-400">
             <div class="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between px-4 py-6">
-                <ul class="flex flex-col md:flex-row items-center md:space-x-10 md:ml-24 lg:flex">
+                <ul class="flex flex-col md:flex-row items-center md:space-x-10 md:ml-22 lg:flex">
                      <li>
                         <a href="/" aria-label="About" title="About" class="mt-3 md:mt-0 font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-purple-600">About</a>
                     </li>
                     <li>
-                        <a href="https://github.com/MuhammedSultan1" aria-label="GitHub" title="GitHub" class="font-medium ml-10 tracking-wide text-gray-700 transition-colors duration-200 hover:text-purple-600">My GitHub</a>
+                        <a href="/welcome" aria-label="Home" title="Home" class="mt-3 md:mt-0 font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-purple-600">Home</a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/MuhammedSultan1" aria-label="GitHub" title="GitHub" class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-purple-600">My GitHub</a>
                     </li>
                 </ul>
                 <a href="/" aria-label="Company" title="Company" class="inline-flex items-center">
