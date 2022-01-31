@@ -23,16 +23,7 @@
             We will take care of the rest.
         </p>
       </div>
-       <form class="flex relative mt-3 md:mt-0 items-center w-full"  method="POST" action="{{ route('forSale') }}">
-        @csrf
         <livewire:home-page-search-bar>
-        <button
-        type="submit"
-        class="inline-flex items-center justify-center h-12 mb-2 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-700 hover:bg-purple-800 focus:shadow-outline focus:outline-none"
-        >
-        Search
-      </button>
-      </form>
     </div>
   </div>
 </div>           
@@ -107,7 +98,7 @@
             <polygon stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" points="29 13 14 29 25 29 23 39 38 23 27 23"></polygon>
           </svg>
         </div>
-        <h6 class="mb-2 font-semibold leading-5">We’re easy to work with.</h6>
+        <h6 class="mb-2 font-semibold leading-5">We're easy to work with.</h6>
         <p class="text-sm text-gray-700">
             We won't make you jump over hurdles in order to achieve your goal. We're very straightforward with our process.
         </p>

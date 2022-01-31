@@ -1,3 +1,5 @@
+ <form class="flex relative mt-3 md:mt-0 items-center w-full"  method="POST" action="{{ route('forSale') }}">
+        @csrf
 <div class="relative mt-3 md:mt-0 w-10/12">
     <input wire:model.debounce.100ms="search" type="text" class="bg-gray-50 text-sm rounded-full w-10/12 h-12 px-4 pl-8 py-1 mb-3 focus:outline-none focus:shadow-outline" placeholder="Search">
     @if(strlen($search) >= 2)
@@ -40,3 +42,10 @@
     </div>
     @endif
 </div>
+     <button
+        type="submit"
+        class="inline-flex items-center justify-center h-12 mb-2 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-700 hover:bg-purple-800 focus:shadow-outline focus:outline-none"
+        >
+        Search
+      </button>
+      </form>
