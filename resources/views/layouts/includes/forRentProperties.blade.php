@@ -1,7 +1,7 @@
  @foreach ($forRent as $rentalProperty)
       <div class="max-w-sm mx-auto overflow-hidden bg-white rounded shadow-lg">
-          <a href="{{ route('forRent.show', $rentalProperty['property_id']) }}">
-            <img class="object-cover object-center w-full h-56 rounded" src="{{ $rentalProperty['photo'] ?? asset('public/images/img-not-available.jpeg') }}" alt="Property">
+          <a href="{{ route('homes.show', $rentalProperty['property_id']) }}">
+            <img class="object-cover object-center w-full h-56 rounded" src="{{ $rentalProperty['photo'] ?? asset('images/img-not-available.jpeg') }}" alt="Property">
             <div class="px-6 py-4">
                 <h1 class="text-xl font-semibold text-gray-800">{{ $rentalProperty['price'] ?? ''}}</h1>
                 <p class="py-2 text-gray-700">{{ $rentalProperty['beds'] ?? ''}} beds, {{ $rentalProperty['baths'] ?? ''}} baths, {{ $rentalProperty['sqft'] ?? ''}}</p>

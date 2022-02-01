@@ -48,22 +48,22 @@ Route::get("wishlist",[ListingsController::class, 'displayWishlist']);
 Route::get("remove_from_wishlist/{id}", [ListingsController::class, 'removeFromWishlist']);
 
 //PROPERTIES
-Route::get('/forSale', 'App\Http\Controllers\ListingsController@forSale')->name('forSale');
+Route::get('/homes', 'App\Http\Controllers\ListingsController@index')->name('homes');
 
-Route::post('/forSale',[
+Route::post('/homes',[
     'as' => 'city',
-    'uses' => 'App\Http\Controllers\ListingsController@forSale'
+    'uses' => 'App\Http\Controllers\ListingsController@index'
 ]);
 
-Route::get('/forSale/{property}', 'App\Http\Controllers\ListingsController@show')->name('forSale.show');
+Route::get('/homes/{property}', 'App\Http\Controllers\ListingsController@show')->name('homes.show');
 
 Route::get('/adminProperty', 'App\Http\Controllers\adminPropertyController@index')->name('adminProperty');
 
 Route::get('/adminProperty/{slug}', 'App\Http\Controllers\adminPropertyController@show')->name('adminProperty.show');
 
- Route::get('/forRent', 'App\Http\Controllers\RentalController@forRent')->name('forRent');
+ //Route::get('/forRent', 'App\Http\Controllers\RentalController@forRent')->name('forRent');
 
- Route::get('/forRent/{property}', 'App\Http\Controllers\RentalController@show')->name('forRent.show');
+ //Route::get('/forRent/{property}', 'App\Http\Controllers\RentalController@show')->name('homes.show');
 
 Route::get('/map', function () {
     return view('mapbox/map');

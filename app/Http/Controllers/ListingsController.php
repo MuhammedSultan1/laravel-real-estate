@@ -20,7 +20,7 @@ class ListingsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function forSale(Request $request)
+    public function index(Request $request)
     {
         //get adminProperty details
         $adminProperties = Property::all();
@@ -157,7 +157,7 @@ class ListingsController extends Controller
           $combinedRental->all();
 
         
-        return view('forSale.forSale',[
+        return view('homes.homes',[
             'adminProperties' => $adminProperties,
             'postal' => $postal,
             'forSale' => $forSale,
@@ -198,6 +198,9 @@ class ListingsController extends Controller
      */
     public function show($id)
     {
+         //get adminProperty details
+        $adminProperties = Property::all();
+
         $property = Http::withHeaders([
         'x-rapidapi-host' => 'realty-in-us.p.rapidapi.com',
         'x-rapidapi-key' => env('RAPID_API_KEY'),
@@ -216,21 +219,11 @@ class ListingsController extends Controller
 
         $combined->all();
         
-        // make the api call for similar properties
-            $similarProperties = Http::withHeaders([
-        'x-rapidapi-host' => 'realty-in-us.p.rapidapi.com',
-        'x-rapidapi-key' => env('RAPID_API_KEY'),
-        ])->get('https://realty-in-us.p.rapidapi.com/properties/list-similarities', [
-            'property_id' => $id,
-            'limit' => '20',
-	        'prop_status' => 'for_sale'
-        ])->json()['results']['similar_homes']['properties'];
-
         
-        return view('forSale.show',[
+        return view('homes.show',[
             'property' => $property,
             'combined' => $combined,
-            'similarProperties' => $similarProperties,
+            'adminProperties' => $adminProperties,
         ]);
     }
 

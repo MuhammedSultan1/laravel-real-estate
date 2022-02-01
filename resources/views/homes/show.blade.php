@@ -102,32 +102,14 @@
 
 {{-- Photos section ends--}}
 
-{{-- Similar homes section begins --}}
-          
-<section class="text-gray-600 body-font">
-  <div class="container px-5 py-24 mx-auto">
-    <div class="flex flex-wrap w-full mb-8 ml-6">
-      <div class="lg:w-1/2 w-full mb-6 lg:mb-0">
-        <h1 class="sm:text-3xl text-lg mb-2 text-gray-900">Similar Properties</h4>
-      </div>
-    </div>
-    <div class="flex flex-wrap grid grid-cols-1 sm:grid-cols-1 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-5">
-        @foreach ($similarProperties as $similarProperty)
-        <a href="{{ route('forSale.show', $similarProperty['property_id']) }}">
-        <div class="bg-white p-6 rounded-lg">
-          <img class="h-40 rounded w-full object-cover object-center mb-6" src="{{ $similarProperty['primary_photo']['href'] ?? asset('public/images/img-not-available.jpeg') }}" alt="property image">
-          <h3 class="tracking-widest text-indigo-500 text-xs font-medium title-font">{{ $similarProperty['location']['address']['line'] }}, {{ $similarProperty['location']['address']['city'] }}, {{ $similarProperty['location']['address']['state_code'] }}, {{ $similarProperty['location']['address']['postal_code'] }}</h3>
-          <h2 class="text-lg text-gray-900 font-medium title-font mb-4">${{ $similarProperty['list_price'] ?? 'Price not available' }}</h2>
-          <p class="leading-relaxed text-base">Beds {{ $similarProperty['description']['beds'] }}</p>
-          <p class="leading-relaxed text-base">Baths {{ $similarProperty['description']['baths'] }} </p>
-          <p class="leading-relaxed text-base">Sqft {{ $similarProperty['description']['sqft'] }}</p>
-        </div>
-        </a>
-        @endforeach
-    </div>
-  </div>
+<section class="dark:bg-coolGray-800 dark:text-coolGray-100">
+  <p class="text-2xl font-normal leading-5 ml-20 mt-8 text-gray-900">Properties listed by the admin</p>
+	<div class="container flex flex-col-reverse mx-auto lg:flex-row">
+    <div class="container mx-auto grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 pt-6 gap-8">
+             @include('layouts.includes.adminListings')
+          </div>
+	    </div>
 </section>
-        {{-- Similar homes section ends --}}
                
             
 @push('custom-scripts')

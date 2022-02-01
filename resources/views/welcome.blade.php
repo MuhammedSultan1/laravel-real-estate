@@ -17,7 +17,7 @@
           Let us help you find the perfect home.
         </h2>
         <p class="text-base text-gray-700 md:text-lg">
-            Enter a zipcode, address or city in the field below and click search.
+            Enter a zipcode or a city and state code in the field below and click search.
         </p>
         <p class="text-base text-gray-700 md:text-lg">
             We will take care of the rest.

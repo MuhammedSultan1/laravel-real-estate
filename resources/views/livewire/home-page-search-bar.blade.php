@@ -1,4 +1,4 @@
- <form class="flex relative mt-3 md:mt-0 items-center w-full"  method="POST" action="{{ route('forSale') }}">
+ <form class="flex relative mt-3 md:mt-0 items-center w-full"  method="POST" action="{{ route('homes') }}">
         @csrf
 <div class="relative mt-3 md:mt-0 w-10/12">
     <input wire:model.debounce.100ms="search" type="text" class="bg-gray-50 text-sm rounded-full w-10/12 h-12 px-4 pl-8 py-1 mb-3 focus:outline-none focus:shadow-outline" placeholder="Search">
@@ -14,7 +14,7 @@
                       $state_code = Str::after($location, ' ');
                       $city = Str::before($location, ',')
                       @endphp
-                        <a href="{{ route('forSale', ['state_code' => $state_code, 'city' => $city]) }}" class="block hover:bg-gray-50 flex items-center">
+                        <a href="{{ route('homes', ['state_code' => $state_code, 'city' => $city]) }}" class="block hover:bg-gray-50 flex items-center">
                             <span class="ml-4"> {{ $location }} </span>
                         </a>
                     </p>
@@ -31,7 +31,7 @@
                       @php
                       $postal = Str::before($location, ',')
                       @endphp
-                        <a href="{{ route('forSale', ['postal' => $postal]) }}" class="block hover:bg-gray-50 flex items-center">
+                        <a href="{{ route('homes', ['postal' => $postal]) }}" class="block hover:bg-gray-50 flex items-center">
                             <span class="ml-4"> {{ $location }} </span>
                         </a>
                     </p>
