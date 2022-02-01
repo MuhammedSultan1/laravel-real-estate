@@ -91,7 +91,71 @@ class ListingsController extends Controller
 
           $combined = $collection->combine([$pluckedLon, $pluckedLat, $pluckedPrices, $pluckedBeds, $pluckedBaths, $pluckedSqft]);
 
-          $combined->all();
+
+
+        //Rental home code below
+
+        $forRent = Http::withHeaders([
+        'x-rapidapi-host' => 'realty-in-us.p.rapidapi.com',
+        'x-rapidapi-key' => env('RAPID_API_KEY'),
+        ])->get('https://realty-in-us.p.rapidapi.com/properties/list-for-rent', [
+            'state_code' => $state_code,
+	        'city' => $city,
+            'postal_code' => $postal,
+            'offset' => '0',
+            'limit' => '52',
+            'sort' => 'relevance'
+        ])->json()['listings'];
+
+        //below we get all the coordinates and property info that is needed from the forRent API call
+     
+        //collect number of sqft
+        $rentalSqftCollection = collect($forRent);
+
+        $pluckedRentalSqft = $rentalSqftCollection->pluck('sqft');
+
+        $pluckedRentalSqft->all();
+
+        //collect number of baths
+        $rentalBathsCollection = collect($forRent);
+
+        $pluckedRentalBaths = $rentalBathsCollection->pluck('baths');
+
+        $pluckedRentalBaths->all();
+
+        //collect number of beds
+        $rentalBedCollection = collect($forRent);
+
+        $pluckedRentalBeds = $rentalBedCollection->pluck('beds');
+
+        $pluckedRentalBeds->all();
+
+        //collect all prices
+        $rentalPriceCollection = collect($forRent);
+
+        $pluckedRentalPrices = $rentalPriceCollection->pluck('price');
+
+        $pluckedRentalPrices->all();
+
+        //collect all longitude
+          $rentalLonCollection = collect($forRent);
+
+          $pluckedRentalLon = $rentalLonCollection->pluck('lon');
+
+          $pluckedRentalLon->all();
+        //collect all latitude
+          $rentalLatCollection = collect($forRent);
+
+          $pluckedRentalLat = $rentalLatCollection->pluck('lat');
+
+          $pluckedRentalLat->all();
+        //combine latitude and longitude and all the other information
+          $rentalCollection = collect(['lon', 'lat', 'price', 'beds', 'baths', 'sqft']);
+
+          $combinedRental = $rentalCollection->combine([$pluckedRentalLon, $pluckedRentalLat, $pluckedRentalPrices, $pluckedRentalBeds, $pluckedRentalBaths, $pluckedRentalSqft]);
+
+          $combinedRental->all();
+
         
         return view('forSale.forSale',[
             'adminProperties' => $adminProperties,
@@ -100,6 +164,8 @@ class ListingsController extends Controller
             'pluckedLon' => $pluckedLon,
             'pluckedLat' => $pluckedLat,
             'combined' => $combined,
+            'combinedRental' => $combinedRental,
+            'forRent' => $forRent,
          ]);
     }
 

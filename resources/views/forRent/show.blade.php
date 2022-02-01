@@ -9,6 +9,18 @@
 </section>
 <section class="text-gray-600 body-font">
    <div class="flex flex-col mb-10 lg:items-start items-center px-24">
+     <form action="/add_to_wishlist" method="POST">
+       @csrf
+       <input type="hidden" name="property_id" value="{{ $property['property_id'] ?? 'No Info' }}">
+       <input type="hidden" name="image" value="{{ $property['photos']['0']['href'] ?? asset('public/images/img-not-available.jpeg') }}">
+       <input type="hidden" name="price" value="{{ $property['price'] ?? 'No Info' }}">
+       <input type="hidden" name="description" value="{{ $property['description'] ?? 'No Info' }}">
+       <input type="hidden" name="address" value="{{ $property['address']['line'] ?? 'No Info' }}{{ $property['address']['city'] ?? 'No Info' }}{{ $property['address']['state_code'] ?? 'No Info' }}{{ $property['address']['postal_code'] ?? 'No Info' }}">
+       <input type="hidden" name="baths" value="{{ $property['baths'] ?? 'No Info' }}">
+       <input type="hidden" name="beds" value="{{ $property['beds'] ?? 'No Info' }}">
+       <input type="hidden" name="sqft" value="{{ $property['building_size']['size'] ?? 'No Info' }}">
+       <button class="px-8 py-3 ml-12 font-semibold text-gray-50 rounded-full bg-purple-700 hover:bg-purple-800">Add to wishlist</button>
+     </form>
         <div class="flex-grow">
             <h1 class="text-gray-900 text-lg title-font font-medium my-6 ml-12">
             {{ $property['address']['line'] }}, {{ $property['address']['city'] }}, {{ $property['address']['state'] }}, {{ $property['address']['postal_code'] }}
@@ -19,8 +31,8 @@
       </div>
       <div class="flex flex-col mb-10 lg:items-start items-center">
         <div class="flex-grow">
-          <h2 class="text-gray-900 text-lg title-font font-medium mb-3">Features</h2>
-           <div class="container mx-auto grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 pt-6 gap-8">
+          <h2 class="text-gray-900 text-lg title-font font-medium mb-3 ml-72">Features</h2>
+           <div class="container mx-auto grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 pt-6 gap-8 ml-72">
                     <div class="rounded border-gray-300 h-24">
                         <div class="flex space-x-2 sm:space-x-4">
                         <div class="space-y-2">
@@ -48,6 +60,15 @@
                         </div>
                     </div>
                     </div>
+                     <div class="rounded border-gray-300 h-24">
+                        <div class="flex space-x-2 sm:space-x-4">
+                        <div class="space-y-2">
+                            <img src="https://img.icons8.com/external-justicon-lineal-justicon/64/000000/external-ruler-construction-justicon-lineal-justicon.png"/>
+                            <p class="text-lg font-medium leading-snug">Square Feet</p>
+                            <p class="leading-snug">{{ $property['building_size']['size'] ?? 'No data available'}}</p>
+                        </div>
+                    </div>
+                    </div>
                     <div class="rounded border-gray-300 h-24">
                         <div class="flex space-x-2 sm:space-x-4">
                         <div class="space-y-2">
@@ -66,12 +87,12 @@
 
 <section class="text-gray-600 body-font mb-8">
   <div class="container px-5 py-24 mx-auto">
-    <h2 class="uppercase tracking-wider text-gray-600 text-lg font-semibold mb-4">Property Photos</h2>
+    <h2 class="uppercase tracking-wider text-gray-600 text-lg font-semibold mb-8 mr-2">Property Photos</h2>
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 flex flex-wrap -m-4">
         @foreach ($property['photos'] as $photo)
-        <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
+        <div class="relative bg-red-500 pb-2/3 rounded">
         <a class="block relative h-48 rounded overflow-hidden">
-            <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="{{ $photo['href'] ?? asset('public/images/img-not-available.jpeg') }}">
+            <img alt="ecommerce" class="absolute h-full w-full object-cover" src="{{ $photo['href'] ?? asset('public/images/img-not-available.jpeg') }}">
         </a>
       </div>
        @endforeach
@@ -83,11 +104,11 @@
 
 {{-- Similar homes section begins --}}
           
-{{-- <section class="text-gray-600 body-font">
+<section class="text-gray-600 body-font">
   <div class="container px-5 py-24 mx-auto">
-    <div class="flex flex-wrap w-full mb-20">
+    <div class="flex flex-wrap w-full mb-8 ml-6">
       <div class="lg:w-1/2 w-full mb-6 lg:mb-0">
-        <h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">Similar Properties</h1>
+        <h1 class="sm:text-3xl text-lg mb-2 text-gray-900">Similar Properties</h4>
       </div>
     </div>
     <div class="flex flex-wrap grid grid-cols-1 sm:grid-cols-1 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-5">
@@ -105,7 +126,7 @@
         @endforeach
     </div>
   </div>
-</section> --}}
+</section>
         {{-- Similar homes section ends --}}
                
             

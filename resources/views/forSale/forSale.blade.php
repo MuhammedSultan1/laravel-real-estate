@@ -16,10 +16,18 @@
 	    </div>
 </section>
 <section class="dark:bg-coolGray-800 dark:text-coolGray-100">
-  <p class="text-2xl font-normal leading-5 ml-20 mt-8 text-gray-900">Properties listed by the API</p>
+  <p class="text-2xl font-normal leading-5 ml-20 mt-8 text-gray-900">Properties that are for sale</p>
 	<div class="container flex flex-col-reverse mx-auto lg:flex-row">
     <div class="container mx-auto grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 pt-6 gap-8">
      @include('layouts.includes.forSaleProperties')
+    </div>
+	</div>
+</section>
+<section class="dark:bg-coolGray-800 dark:text-coolGray-100">
+  <p class="text-2xl font-normal leading-5 ml-20 mt-8 text-gray-900">Properties that are for rent</p>
+	<div class="container flex flex-col-reverse mx-auto lg:flex-row">
+    <div class="container mx-auto grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 pt-6 gap-8">
+     @include('layouts.includes.forRentProperties')
     </div>
 	</div>
 </section>

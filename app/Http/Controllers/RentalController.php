@@ -132,8 +132,8 @@ class RentalController extends Controller
      */
     public function show($id)
     {
-         $details = Property::where('slug', $slug)->firstOrFail();
-         $adminProperties = Property::all();
+         //$details = Property::where('slug', $slug)->firstOrFail();
+         //$adminProperties = Property::all();
 
         $property = Http::withHeaders([
         'x-rapidapi-host' => 'realty-in-us.p.rapidapi.com',
@@ -169,8 +169,8 @@ class RentalController extends Controller
             'property' => $property,
             'combined' => $combined,
             'similarProperties' => $similarProperties,
-            'details' => $details,
-            'adminProperties' => $adminProperties,
+           // 'details' => $details,
+           // 'adminProperties' => $adminProperties,
         ]);
     }
 
