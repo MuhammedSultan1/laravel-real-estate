@@ -12,6 +12,18 @@
     <img class="lg:w-2/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded" alt="hero" src="{{ $details['gallery'] }}">
   </div>
 </section>
+  <form action="/add_to_wishlist" method="POST" class="ml-24">
+       @csrf
+       <input type="hidden" name="property_id" value="{{ $details['id'] ?? 'No Info' }}">
+       <input type="hidden" name="image" value="{{ $details['gallery'] ?? asset('public/images/img-not-available.jpeg') }}">
+       <input type="hidden" name="price" value="{{ $details['price'] ?? 'No Info' }}">
+       <input type="hidden" name="description" value="{{ $details['details'] ?? 'No Info' }}">
+       <input type="hidden" name="address" value="{{ $details['address'] ?? 'No Info' }}">
+       <input type="hidden" name="baths" value="{{ $details['baths'] ?? 'No Info' }}">
+       <input type="hidden" name="beds" value="{{ $details['beds'] ?? 'No Info' }}">
+       <input type="hidden" name="sqft" value="{{ $details['sqft'] ?? 'No Info' }}">
+       <button class="px-8 py-3 ml-12 font-semibold text-gray-50 rounded-full bg-purple-700 hover:bg-purple-800">Add to wishlist</button>
+     </form>
 <section class="text-gray-600 body-font">
    <div class="flex flex-col mb-10 lg:items-start items-center px-24">
         <div class="flex-grow">
@@ -24,8 +36,8 @@
       </div>
       <div class="flex flex-col mb-10 lg:items-start items-center">
         <div class="flex-grow">
-          <h2 class="text-gray-900 text-lg title-font font-medium mb-3">Features</h2>
-           <div class="container mx-auto grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 pt-6 gap-8">
+          <h2 class="text-gray-900 text-lg title-font font-medium mb-3 ml-72">Features</h2>
+                <div class="container mx-auto grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 pt-6 gap-8 ml-72">
                     <div class="rounded border-gray-300 h-24">
                         <div class="flex space-x-2 sm:space-x-4">
                         <div class="space-y-2">
