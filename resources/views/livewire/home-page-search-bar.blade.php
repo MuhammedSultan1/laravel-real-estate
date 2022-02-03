@@ -11,7 +11,7 @@
                     <p class="block hover:text-purple-600 px-3 py-3 flex items-center">
                       {{-- <span class="ml-4"> {{ $location }} </span> --}}
                       @php
-                      $state_code = Str::after($location, ' ');
+                      $state_code = Str::after($location, ', ');
                       $city = Str::before($location, ',')
                       @endphp
                         <a href="{{ route('homes', ['state_code' => $state_code, 'city' => $city]) }}" class="block hover:bg-gray-50 flex items-center">
