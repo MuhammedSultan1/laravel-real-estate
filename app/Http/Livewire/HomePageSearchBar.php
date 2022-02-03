@@ -13,7 +13,6 @@ class HomePageSearchBar extends Component
     public function render()
     {
         $cities = [];
-        $addresses = [];
         $zipcodes = [];
 
         if(strlen($this->search) >= 2){

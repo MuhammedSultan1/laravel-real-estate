@@ -9,7 +9,6 @@
                 @foreach ($cities as $result => $location)
                 <li class="border-b border-gray-300">
                     <p class="block hover:text-purple-600 px-3 py-3 flex items-center">
-                      {{-- <span class="ml-4"> {{ $location }} </span> --}}
                       @php
                       $state_code = Str::after($location, ', ');
                       $city = Str::before($location, ',')
@@ -27,7 +26,6 @@
                 @foreach ($zipcodes as $result => $location)
                 <li class="border-b border-gray-300">
                     <p class="block hover:text-purple-600 px-3 py-3 flex items-center">
-                      {{-- <span class="ml-4"> {{ $location }} </span> --}}
                       @php
                       $postal = Str::before($location, ',')
                       @endphp
