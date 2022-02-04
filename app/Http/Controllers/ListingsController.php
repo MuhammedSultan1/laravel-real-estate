@@ -156,7 +156,6 @@ class ListingsController extends Controller
 
           $combinedRental->all();
 
-          $jawgToken = env('JAWG_KEY');
         
         return view('homes.homes',[
             'adminProperties' => $adminProperties,
@@ -167,7 +166,6 @@ class ListingsController extends Controller
             'combined' => $combined,
             'combinedRental' => $combinedRental,
             'forRent' => $forRent,
-            'jawgToken' => $jawgToken,
          ]);
     }
 
@@ -221,14 +219,12 @@ class ListingsController extends Controller
 
         $combined->all();
 
-         $jawgToken = env('JAWG_KEY');
         
         
         return view('homes.show',[
             'property' => $property,
             'combined' => $combined,
             'adminProperties' => $adminProperties,
-            'jawgToken' => $jawgToken,
         ]);
     }
 
