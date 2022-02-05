@@ -8,12 +8,8 @@ use Tests\TestCase;
 
 class ViewAboutPageTest extends TestCase
 {
-    /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
-    public function test_example()
+    /** @test */
+    public function the_about_page_loads_correctly()
     {
         $response = $this->get('/about');
 
