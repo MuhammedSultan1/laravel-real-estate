@@ -17,6 +17,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/about', function () {
+    return view('about');
+});
+
 //USER AUTHENTICATION
 Route::get('/login', function () {
     return view('auth.login');
