@@ -139,9 +139,9 @@
 @endpush
  <script>
     var coordinates ={!! json_encode($details->toArray()) !!};
-    console.log(coordinates);
+
   
-const accessToken = {{ env('JAWG_KEY') }};
+const accessToken = '{{ env('JAWG_KEY') }}';
 const map = new maplibregl.Map({
       container: "propertyMap",
       style: `https://api.jawg.io/styles/jawg-terrain.json?access-token=${accessToken}`,

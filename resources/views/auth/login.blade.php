@@ -126,7 +126,7 @@
                         </div>
                       </div>
                       <div>
-                        <a href="/admin/login">
+                        <a href={{ route('voyager.login') }}>
                         <button type="submit" class="
                       w-full
                       items-center

@@ -10,7 +10,7 @@
     </div>
     <div class="flex flex-wrap -m-4">
       @foreach($properties as $property)
-       <div class="max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg">
+       <div class="max-w-sm mx-auto my-4 overflow-hidden bg-white rounded-lg shadow-lg">
             <img class="object-cover object-center w-full h-56" src="{{ $property->image ?? 'images/img-not-available.jpeg' }}" alt="avatar">
 
             <div class="px-6 py-4">
