@@ -36,6 +36,7 @@
  <script type="text/javascript">
 
   var propertyInfo ={!! json_encode($combined->toArray()) !!};
+  var rentalPropertyInfo ={!! json_encode($combinedRental->toArray()) !!};
 
   const accessToken = '{{ env('JAWG_KEY') }}';
 
@@ -50,7 +51,7 @@
       "https://unpkg.com/@mapbox/mapbox-gl-rtl-text@0.2.3/mapbox-gl-rtl-text.min.js"
   );
 
-  // This add a marker with the default icon
+  // This adds a marker for properties that are for sale with the default icon
   //for every longitude key-value pair, display a marker
    for(var i = 0; i < propertyInfo.lon.length; i++){
       new maplibregl.Marker().setLngLat([propertyInfo.lon[i], propertyInfo.lat[i]]).addTo(map);
@@ -66,6 +67,25 @@
     new maplibregl.Marker()
       .setLngLat([propertyInfo.lon[i], propertyInfo.lat[i]])
       .setPopup(markerPopup)
+      .addTo(map);
+    }
+
+     // This add a marker for properties that are for rent with the default icon
+  //for every longitude key-value pair, display a marker
+   for(var i = 0; i < rentalPropertyInfo.lon.length; i++){
+      new maplibregl.Marker().setLngLat([rentalPropertyInfo.lon[i], rentalPropertyInfo.lat[i]]).addTo(map);
+      let msg = 'Price: '+ rentalPropertyInfo.price[i] + ' Beds: ' + rentalPropertyInfo.beds[i] + ' Baths: ' + rentalPropertyInfo.baths[i] + ' Sqft: ' + rentalPropertyInfo.sqft[i];
+
+    // Adding a popup
+    // Popup definition before binding it to a marker
+    const rentalMarkerPopup = new maplibregl.Popup({
+        closeOnClick: true
+      })
+      .setHTML(msg);
+    // Connect the popup to a new marker
+    new maplibregl.Marker()
+      .setLngLat([rentalPropertyInfo.lon[i], rentalPropertyInfo.lat[i]])
+      .setPopup(rentalMarkerPopup)
       .addTo(map);
     }
 
