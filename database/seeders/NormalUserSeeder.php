@@ -16,9 +16,20 @@ class NormalUserSeeder extends Seeder
     public function run()
     {
         DB::table('normal_users')->insert([
+    [
             'name' => 'Frank Stevenson',
             'email' => 'frankstevenson@gmail.com',
             'password' => Hash::make('12345')
-        ]);
+    ],
+    [
+            'name' => 'John Doe',
+            'email' => 'johndoe@gmail.com',
+            'password' => Hash::make('12345')
+    ],
+    [
+            'name' => 'Jane Williams',
+            'email' => 'janewilliams@gmail.com',
+            'password' => Hash::make('12345')
+    ]]);
     }
 }
