@@ -16,7 +16,7 @@
             <div class="px-6 py-4">
                 <h1 class="text-xl font-semibold text-gray-800">${{ $property->price ?? 'No information available' }}</h1>
 
-                <p class="py-2 text-gray-700">{!!  Str::limit($property->description, 300) ?? 'No information available' !!}</p>
+                <p class="py-2 text-gray-700">{{  Str::limit($property->description, 300) ?? 'No information available' }}</p>
                 
                 <div class="flex items-center mt-4 text-gray-700">
                     <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -13,6 +13,8 @@ use App\Http\Controllers\ListingsController;
 |
 */
 
+Route::middleware('throttle:only_thirty_visits')->group(function(){
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -38,11 +40,6 @@ Route::get('/register', function () {
 });
 
 Route::post('/register','App\Http\Controllers\NormalUserController@register');
-
-
-Route::group(['prefix' => 'admin'], function () {
-    Voyager::routes();
-});
 
 //WISHLIST
 Route::post('/add_to_wishlist',[ListingsController::class, 'addToWishlist']);
@@ -71,4 +68,10 @@ Route::get('/adminProperty/{slug}', 'App\Http\Controllers\adminPropertyControlle
 
 Route::get('/map', function () {
     return view('mapbox/map');
+});
+
+});
+//ADMIN AUTHENTICATION
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
 });
